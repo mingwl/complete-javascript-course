@@ -156,7 +156,6 @@ console.log('23' + '10' + 3)
 let n = '1' + 1 //11
 n = n - 1 //10
 console.log(n)
-*/
 
 // 5 falsy: 0, '', undefined, null, NaN
 console.log(Boolean(0))
@@ -177,4 +176,32 @@ if (height) {
     console.log(`height is defined`)
 } else {
     console.log(`Height is undefined`)
+}
+*/
+
+const age = 18;
+
+// strict equality operator: 无强制类型转换 no type coercion
+if (age === 18) {
+    console.log(`you just became an adult (strict)`)
+}
+
+// loose equality operator: 执行强制类型转换 type coercion
+if (age == 18) {
+    console.log(`you just became an adult (loose)`)
+}
+
+const favorite = Number(prompt(`what's your favorite number? `))
+console.log(favorite, typeof favorite)
+
+if (favorite === 23) {
+    console.log(`23 is an amazing number`)
+} else if (favorite === 7) {
+    console.log(`7 is also a cool number`)
+} else {
+    console.log(`number ${favorite} is not 23 nor 7`)
+}
+
+if (favorite !== 23) {
+    console.log(`why not 23?`)
 }
