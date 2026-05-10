@@ -228,7 +228,6 @@ if (hasDriverLicense && hasGoodVision && !isTired) {
     console.log(`Someone else shoudl drive`)
 }
 
-*/
 
 const day = 'fads';
 
@@ -256,3 +255,12 @@ switch (day) {
         break;
 }
 
+*/
+
+const age = 13;
+age >= 18 ? console.log(`I like wine`) : console.log(`I like water`)
+
+const drink = age >= 19 ? 'wine' : 'water';
+console.log(drink)
+
+console.log(`I like ${age >= 19 ? 'wine' : 'water'}`)
