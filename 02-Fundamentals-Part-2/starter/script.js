@@ -54,3 +54,14 @@ const age2 = calcAge2(1991);
 console.log(age2)
 
 // arrow function
+const calcAge3 = birthYear => 2037 - birthYear;
+const age3 = calcAge1(1991);
+console.log(age3);
+
+const yearUntilRetirement = (birthYear, firstName) => {
+    const age = calcAge3(birthYear);
+    const retirement = 65 - age;
+    return `${firstName} retires in ${retirement}`
+}
+console.log(yearUntilRetirement(1991, 'Jonas'));
+console.log(yearUntilRetirement(1980, 'Bob'));
