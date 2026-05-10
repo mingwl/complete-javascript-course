@@ -204,7 +204,6 @@ if (favorite === 23) {
 if (favorite !== 23) {
     console.log(`why not 23?`)
 }
-*/
 
 const hasDriverLicense = true;
 const hasGoodVision = true;
@@ -227,5 +226,33 @@ if (hasDriverLicense && hasGoodVision && !isTired) {
     console.log(`Sara is able to drive`)
 } else {
     console.log(`Someone else shoudl drive`)
+}
+
+*/
+
+const day = 'fads';
+
+switch (day) {
+    case 'mon':
+        console.log(`Plan cours structure`);
+        console.log(`Go to coding meetup`);
+        break;
+    case 'tue':
+        console.log(`prepre thoery videos`)
+        break;
+    case 'wed':
+    case 'thu':
+        console.log(`write code examples`)
+        break;
+    case 'fri':
+        console.log(`record videos`);
+        break;
+    case 'sat':
+    case 'sun':
+        console.log(`enjoy the weekend`)
+        break;
+    default:
+        console.log(`invalid day`)
+        break;
 }
 
