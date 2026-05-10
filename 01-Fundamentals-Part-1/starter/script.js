@@ -255,7 +255,6 @@ switch (day) {
         break;
 }
 
-*/
 
 const age = 13;
 age >= 18 ? console.log(`I like wine`) : console.log(`I like water`)
@@ -264,3 +263,10 @@ const drink = age >= 19 ? 'wine' : 'water';
 console.log(drink)
 
 console.log(`I like ${age >= 19 ? 'wine' : 'water'}`)
+
+*/
+
+// 29 coding challeng #4
+const bill = 430;
+const tip = (bill >= 50 && bill <= 300) ? 0.15 * bill : 0.2 * bill;
+console.log(`The bill was ${bill}, the tip was ${tip}, and the total was ${bill + tip}`)
