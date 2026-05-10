@@ -22,22 +22,21 @@ logger();
 logger();
 logger();
 
-function fruitProcessor(apples, oranges) {
+function cessor(apples, oranges) {
     // console.log(apples, oranges);
     const juice = `Juice with ${apples} apples and ${oranges} oranges`;
     return juice
 }
 
-// console.log(fruitProcessor(2, 3));
-const appelJuice = fruitProcessor(5, 0);
+// console.log(cessor(2, 3));
+const appelJuice = cessor(5, 0);
 console.log(appelJuice);
 
-const appelOrangeJuice = fruitProcessor(2, 4);
+const appelOrangeJuice = cessor(2, 4);
 console.log(appelOrangeJuice)
 
 const num = Number('23');
 console.log(num);
-*/
 
 // function declaration
 const age1 = calcAge1(1991);
@@ -65,3 +64,18 @@ const yearUntilRetirement = (birthYear, firstName) => {
 }
 console.log(yearUntilRetirement(1991, 'Jonas'));
 console.log(yearUntilRetirement(1980, 'Bob'));
+
+*/
+
+function cutFruitPieces(fruit) {
+    return fruit * 4;
+}
+
+function fruitProcessor(apples, oranges) {
+    const applePieces = cutFruitPieces(apples);
+    const orangePieces = cutFruitPieces(oranges);
+    const juice = `Juice with ${applePieces} pieces of apples and ${orangePieces} pieces of oranges`;
+    return juice
+}
+
+console.log(fruitProcessor(2, 3))
