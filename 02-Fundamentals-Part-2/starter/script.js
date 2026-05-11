@@ -198,7 +198,6 @@ if (friends.includes('Steven')) {
     console.log(`You have a friend called Steven`);
 }
 
-*/
 
 const calcTip = bill => bill >= 50 && bill <= 300 ? bill * 0.15 : bill * 0.2;
 console.log(calcTip(100));
@@ -212,3 +211,44 @@ console.log(tips);
 
 const totals = [bills[0] + tips[0], bills[1] + tips[1], bills[2] + tips[2]];
 console.log(bills, tips, totals);
+
+*/
+
+const jonasArray = [
+    'Jonas',
+    'Schmedtmann',
+    2037 - 1991,
+    'teacher',
+    ['Michael', 'Peter', 'Steven']
+];
+
+const jonas = {
+    firstName: 'Jonas',
+    lastName: 'Schmedtmann',
+    age: 2037 - 1991,
+    job: 'teacher',
+    friends: ['Michael', 'Peter', 'Steven']
+};
+console.log(jonas)
+
+console.log(jonas.lastName)
+console.log(jonas['lastName'])
+
+const nameKey = 'Name';
+console.log(jonas['first' + nameKey])
+console.log(jonas['last' + nameKey])
+
+const interestedIn = prompt(`What do you want to know about Jonas? Choose between firstName, lastName, age, job and friends`);
+
+if (jonas[interestedIn]) {
+    console.log(jonas[interestedIn])
+} else {
+    console.log(`invalid ${interestedIn}. Choose between firstName, lastName, age, job and friends`)
+}
+
+jonas.location = 'Portugal';
+jonas['twitter'] = '@jonas';
+console.log(jonas);
+
+// chanllenge
+console.log(`${jonas.firstName} has ${jonas.friends.length} friends, and his best friend is called ${jonas.friends[0]}`)
