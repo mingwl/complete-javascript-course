@@ -289,7 +289,6 @@ const jonas = {
 console.log(jonas.getSummary());
 console.log(jonas.age);
 
-*/
 
 const mark = {
     fullName: 'Mark Miller',
@@ -321,4 +320,10 @@ if (mark.bmi > john.bmi) {
     console.log(`${mark.fullName}'s BMI (${mark.bmi}) is higher than ${john.fullName}'s BMI (${john.bmi})`);
 } else if (john.bmi > mark.bmi) {
     console.log(`${john.fullName}'s BMI (${john.bmi}) is higher than ${mark.fullName}'s BMI (${mark.bmi})`);
+}
+
+*/
+
+for (let i = 1; i <= 10; i++) {
+    console.log(`lifting weights ${i}次`);
 }
