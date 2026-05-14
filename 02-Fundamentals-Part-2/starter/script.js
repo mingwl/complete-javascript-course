@@ -322,8 +322,51 @@ if (mark.bmi > john.bmi) {
     console.log(`${john.fullName}'s BMI (${john.bmi}) is higher than ${mark.fullName}'s BMI (${mark.bmi})`);
 }
 
-*/
 
 for (let i = 1; i <= 10; i++) {
     console.log(`lifting weights ${i}次`);
+}
+
+*/
+
+// 48.
+const jonasArray = [
+    'Jonas',
+    'Schmedtmann',
+    2037 - 1991,
+    'teacher',
+    ['Michael', 'Peter', 'Steven'],
+    true
+];
+
+const jonasTypes = [];
+
+for (let i = 0; i < jonasArray.length; i++) {
+    // jonasTypes[i] = typeof jonasArray[i];
+    jonasTypes.push(typeof jonasArray[i]);
+    console.log(`${i + 1}: ${jonasArray[i]} (of type ${jonasTypes[i]})`);
+}
+console.log(jonasArray);
+console.log(jonasTypes);
+
+const years = [1991, 2007, 1969, 2020];
+const ages = [];
+for (let i = 0; i < years.length; i++) {
+    ages.push(2037 - years[i]);
+}
+console.log(ages);
+
+// continue and break
+console.log(`--- ONLY STRING ---`)
+for (let i = 0; i < jonasArray.length; i++) {
+    if (typeof jonasArray[i] !== 'string')
+        continue;
+    console.log(`${i + 1}: ${jonasArray[i]} (of type ${jonasTypes[i]})`);
+}
+
+console.log(`--- BREAK WITH NUMBER ---`)
+for (let i = 0; i < jonasArray.length; i++) {
+    if (typeof jonasArray[i] === 'number')
+        break;
+    console.log(`${i + 1}: ${jonasArray[i]} (of type ${jonasTypes[i]})`);
 }
