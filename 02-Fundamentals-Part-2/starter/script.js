@@ -327,7 +327,6 @@ for (let i = 1; i <= 10; i++) {
     console.log(`lifting weights ${i}次`);
 }
 
-*/
 
 // 48.
 const jonasArray = [
@@ -369,4 +368,27 @@ for (let i = 0; i < jonasArray.length; i++) {
     if (typeof jonasArray[i] === 'number')
         break;
     console.log(`${i + 1}: ${jonasArray[i]} (of type ${jonasTypes[i]})`);
+}
+
+*/
+
+// 49
+const jonasArray = [
+    'Jonas',
+    'Schmedtmann',
+    2037 - 1991,
+    'teacher',
+    ['Michael', 'Peter', 'Steven'],
+    true
+];
+
+for (let i = jonasArray.length - 1; i >= 0; i--) {
+    console.log(`${i}: ${jonasArray[i]}`);
+}
+
+for (let i = 1; i <= 3; i++) {
+    console.log(`------ Starting ex${i}`);
+    for (let j = 1; j <= 5; j++) {
+        console.log(`Lifting weight rep${i}${j}`);
+    }
 }
