@@ -370,7 +370,6 @@ for (let i = 0; i < jonasArray.length; i++) {
     console.log(`${i + 1}: ${jonasArray[i]} (of type ${jonasTypes[i]})`);
 }
 
-*/
 
 // 49
 const jonasArray = [
@@ -391,4 +390,28 @@ for (let i = 1; i <= 3; i++) {
     for (let j = 1; j <= 5; j++) {
         console.log(`Lifting weight rep${i}${j}`);
     }
+}
+
+*/
+
+// 50
+
+for (let i = 1; i <= 3; i++) {
+    console.log(`FOR: Starting ex${i}`);
+}
+
+let i = 1
+while (i <= 3) {
+    console.log(`WHILE: Starting ex${i}`);
+    i++;
+}
+
+
+const rollDice = () => Math.trunc(Math.random() * 6) + 1;
+let rep = 1;
+let dice = 1;
+while (dice !== 6) {
+    dice = rollDice();
+    console.log(`${rep}: you rolled a ${dice === 6 ? '6!!!' : dice}`);
+    rep++;
 }
