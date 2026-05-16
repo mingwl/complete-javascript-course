@@ -32,7 +32,6 @@ console.log(calcTempAmplitude([3, 7, 4, 23]));
 const temp2 = [-100, 100];
 console.log(calcTempAmplitude(temp.concat(temp2)));
 
-*/
 
 const measureKelvin = () => {
   const measurement = {
@@ -60,7 +59,7 @@ const calcTempAmplitude = temps => {
     cur = temps[i];
     if (typeof cur !== 'number') continue;
 
-    debugger;
+    // debugger;
     min = cur < min ? cur : min;
     max = cur > max ? cur : max;
   }
@@ -71,3 +70,16 @@ const calcTempAmplitude = temps => {
 
 const temp = [3, 5, 1, 9, 4, 5];
 console.log(calcTempAmplitude(temp));
+
+*/
+
+const printForecast = arr => {
+  let str = '... ';
+  for (let i = 0; i < arr.length; i++) {
+    str += `${arr[i]}oC🌡️ in ${i + 1} days ... `;
+  }
+  console.log(str);
+};
+
+printForecast([17, 21, 23]);
+printForecast([12, 5, -5, 0, 4]);
