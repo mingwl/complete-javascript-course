@@ -18,15 +18,30 @@ const labelSecretNumber = document.querySelector('.number');
 const labelScore = document.querySelector('.score');
 const inputNumber = document.querySelector('.guess');
 const body = document.querySelector('body');
+const bntCheck = document.querySelector('.check');
+const bntAgain = document.querySelector('.again');
 
 // 返回一个1到max之间的随机整数
 const getRandomNumber = max => Math.trunc(Math.random() * max) + 1;
+let secretNumber;
+let score;
 
-const secretNumber = getRandomNumber(20);
+const init = () => {
+  score = 20;
+  secretNumber = getRandomNumber(20);
+  labelSecretNumber.textContent = '?';
+  labelMessage.textContent = 'Start guessing...';
+  labelScore.textContent = score;
+  labelSecretNumber.style.width = '15rem';
+  body.style.backgroundColor = '#222';
+  inputNumber.value = '';
+  labelSecretNumber.textContent = secretNumber;
+};
+init();
 
-let score = 20;
+bntAgain.addEventListener('click', init);
 
-document.querySelector('.check').addEventListener('click', function () {
+bntCheck.addEventListener('click', function () {
   const guess = Number(inputNumber.value);
   console.log(guess, typeof guess);
 
@@ -36,6 +51,8 @@ document.querySelector('.check').addEventListener('click', function () {
 
     // 答案正确
   } else if (guess === secretNumber) {
+    score--;
+    labelScore.textContent = score;
     labelSecretNumber.textContent = secretNumber;
     labelMessage.textContent = '🎉答案正确';
     labelSecretNumber.style.width = '30rem';
