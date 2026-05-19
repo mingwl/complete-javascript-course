@@ -78,7 +78,6 @@ const c = 3;
 console.log(a === window.a);
 console.log(b === window.b);
 console.log(c === window.c);
-*/
 
 // 101 This keyword
 
@@ -113,3 +112,67 @@ matilda.calcAge();
 
 const f = jonas.calcAge;
 f();
+
+*/
+
+// 102 regular function vs arrow funciton
+
+// NEVER USE var
+// var firstName = 'Matilda';
+
+const jonas = {
+  firstName: 'Jonas',
+  year: 1991,
+  calcAge: function () {
+    // console.log(this);
+    console.log(2037 - this.year);
+
+    // this is undefined in a regular function call
+
+    // solution 1
+    // const self = this; // self or that
+    // const isMillenial = function () {
+    //   console.log(self);
+    //   console.log(self.year >= 1981 && self.year <= 1996);
+    //   // console.log(this.year >= 1981 && this.year <= 1996);
+    // };
+
+    // solution 2
+    const isMillenial = () => {
+      console.log(this);
+      console.log(this.year >= 1981 && this.year <= 1996);
+    };
+    isMillenial();
+  },
+
+  // NEVER USE arrow function as method
+  // greet: () => {
+  //   console.log(this);
+  //   console.log(`Hey ${this.firstName}`);
+  // },
+  greet: function () {
+    console.log(this);
+    console.log(`Hey ${this.firstName}`);
+  },
+};
+
+// firstname is undefined in global execution context
+console.log(this.firstName);
+
+jonas.greet();
+console.log('---');
+jonas.calcAge();
+
+// argument keyword
+const addExpr = function (a, b) {
+  console.log(arguments);
+  return a + b;
+};
+addExpr(2, 5);
+addExpr(2, 5, 8, 12);
+
+const addArrow = (a, b) => {
+  console.log(arguments);
+  return a + b;
+};
+addArrow(2, 5, 8, 12);
