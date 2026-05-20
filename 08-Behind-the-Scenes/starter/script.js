@@ -113,7 +113,6 @@ matilda.calcAge();
 const f = jonas.calcAge;
 f();
 
-*/
 
 // 102 regular function vs arrow funciton
 
@@ -176,3 +175,50 @@ const addArrow = (a, b) => {
   return a + b;
 };
 addArrow(2, 5, 8, 12);
+
+*/
+
+// 102 引用对象
+
+const jessica1 = {
+  firstName: 'Jessica',
+  lastName: 'Williams',
+  age: 27,
+};
+
+function marryPerson(originalPerson, newLastName) {
+  originalPerson.lastName = newLastName;
+  return originalPerson;
+}
+
+// const marriedJessica = jessica;
+// marriedJessica.lastName = 'Davis';
+const marriedJessica = marryPerson(jessica1, 'Davis2');
+
+console.log('Before:', jessica1);
+console.log('After:', marriedJessica);
+
+const jessica = {
+  firstName: 'Jessica',
+  lastName: 'Williams',
+  age: 27,
+  family: ['Alice', 'Bob'],
+};
+
+// shallow copy: copy only the 1st level
+const jessicaShallow = { ...jessica };
+jessicaShallow.lastName = 'Davis3';
+console.log(jessica, jessicaShallow);
+
+jessicaShallow.family.push('Mary');
+jessicaShallow.family.push('John');
+
+console.log('Before:', jessica);
+console.log('After:', jessicaShallow);
+
+// deep copy/clone
+const jessicaDeep = structuredClone(jessica);
+jessicaDeep.family.push('Mary2');
+jessicaDeep.family.push('John2');
+console.log('Before:', jessica);
+console.log('After:', jessicaDeep);
