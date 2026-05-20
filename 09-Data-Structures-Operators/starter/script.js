@@ -30,10 +30,6 @@ const restaurant = {
   starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
   mainMenu: ['Pizza', 'Pasta', 'Risotto'],
 
-  order: function (starterIndex, mainIndex) {
-    return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
-  },
-
   openingHours: {
     thu: {
       open: 12,
@@ -48,8 +44,62 @@ const restaurant = {
       close: 24,
     },
   },
+
+  order: function (starterIndex, mainIndex) {
+    return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
+  },
+
+  orderDelivery: function ({
+    starterIndex = 1,
+    mainIndex = 0,
+    time = '20;00',
+    address,
+  }) {
+    console.log(
+      `Order received: ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`,
+    );
+  },
 };
 
+// 109 Destructing Object 打散对象
+restaurant.orderDelivery({
+  time: '22:30',
+  address: 'Via del Sole, 2',
+  mainIndex: 2,
+  starterIndex: 2,
+});
+restaurant.orderDelivery({
+  address: 'Via del Sole, 3',
+});
+
+const { name, categories, openingHours } = restaurant;
+console.log(name, categories, openingHours);
+
+// rename variables
+const { name: restoName, openingHours: hours, categories: tags } = restaurant;
+console.log(restoName, tags, hours);
+
+// default value if variables does not exist
+const { menu = [], starterMenu: starters = [] } = restaurant;
+console.log(menu, starters);
+
+// mutate variables
+let a = 111;
+let b = 999;
+const obj = { a: 23, b: 7, c: 14 };
+// console.log(a, b);
+
+// create a code block with ()
+({ a, b } = obj);
+console.log(a, b);
+
+// nested object
+const {
+  fri: { open: o, close: c },
+} = openingHours;
+console.log(o, c);
+
+/*
 // 108 Destructing Arrays 打散数组
 const arr = [2, 3, 4];
 const [x, y, z] = arr;
@@ -78,3 +128,4 @@ console.log(m1, m31, m32);
 // 默认值
 const [p1 = 1, p2 = 1, p3 = 1] = [8, 9];
 console.log(p1, p2, p3);
+*/
