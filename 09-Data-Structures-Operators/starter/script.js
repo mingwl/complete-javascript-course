@@ -63,7 +63,52 @@ const restaurant = {
   orderPasta: function (ing1, ing2, ing3) {
     console.log(`Here is your delicious pasta with ${ing1}, ${ing2}, ${ing3}`);
   },
+
+  orderPizza: function (mainIng, ...otherIng) {
+    console.log(mainIng);
+    console.log(otherIng);
+  },
 };
+
+// 112 the rest operator
+// 1.destructuring
+// spread, because on the RIGHT side of =
+const arr = [1, 2, ...[3, 4]];
+console.log(arr);
+
+// REST, because on the LEFT side of =
+const [a, b, ...others] = [1, 2, 3, 4, 5];
+console.log(a, b, others);
+
+const [pizza, , risotto, ...otherFood] = [
+  ...restaurant.mainMenu,
+  ...restaurant.starterMenu,
+];
+console.log(pizza, risotto, otherFood);
+
+// Object
+const { sat, ...weekdays } = restaurant.openingHours;
+console.log(sat, weekdays);
+
+// 2. the rest operator in function
+const add = function (...numbers) {
+  let sum = 0;
+  for (let i = 0; i < numbers.length; i++) {
+    sum += numbers[i];
+  }
+  console.log(numbers, sum);
+};
+add(2, 3);
+add(5, 3, 7, 2);
+
+// the spread operator
+const x = [23, 5, 7];
+add(...x);
+
+restaurant.orderPizza('mushrooms', 'onion', 'olives', 'spinach');
+restaurant.orderPizza('mushrooms');
+
+/*
 
 // 111 the spread operator
 const arr = [7, 8, 9];
@@ -115,7 +160,6 @@ const restaurantCopy = { ...restaurant };
 restaurantCopy.name = 'Ristorante Roma';
 console.log(restaurant.name, restaurantCopy.name);
 
-/*
 
 // 109 Destructing Object 打散对象
 restaurant.orderDelivery({
