@@ -59,7 +59,63 @@ const restaurant = {
       `Order received: ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`,
     );
   },
+
+  orderPasta: function (ing1, ing2, ing3) {
+    console.log(`Here is your delicious pasta with ${ing1}, ${ing2}, ${ing3}`);
+  },
 };
+
+// 111 the spread operator
+const arr = [7, 8, 9];
+const badNewArr = [1, 2, arr[0], arr[1], arr[2]];
+console.log(badNewArr);
+
+const newArr = [1, 2, ...arr];
+console.log(newArr);
+
+console.log(...newArr);
+console.log(newArr[0], newArr[1], newArr[2], newArr[3], newArr[4]);
+
+const newMenu = [...restaurant.mainMenu, 'Gnocci'];
+console.log(newMenu);
+
+// shallow copy
+const mainMenuCopy = [...restaurant.mainMenu];
+console.log(mainMenuCopy);
+
+// join 2 arrays
+const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
+console.log(menu);
+
+// iterables: array, string, map, set. Not object
+const str = 'Jonas';
+const letters = [...str, ' ', 'S.'];
+console.log(letters);
+console.log(...str);
+console.log(str[0], str[1]);
+// console.log(`${...str}`);
+
+// real world example
+const ingredients = [
+  // prompt("Let's make pasta ing1"),
+  // prompt("Let's make pasta ing2"),
+  // prompt("Let's make pasta ing3"),
+];
+console.log(ingredients);
+
+restaurant.orderPasta(ingredients[0], ingredients[1], ingredients[2]);
+restaurant.orderPasta(...ingredients);
+
+// since ES2018: ... works on objects
+const newRestaurant = { foundedIn: 1990, ...restaurant, founder: 'Guiseppe' };
+console.log(newRestaurant);
+
+// shallow copy object
+const restaurantCopy = { ...restaurant };
+restaurantCopy.name = 'Ristorante Roma';
+console.log(restaurant.name, restaurantCopy.name);
+
+/*
 
 // 109 Destructing Object 打散对象
 restaurant.orderDelivery({
@@ -99,7 +155,6 @@ const {
 } = openingHours;
 console.log(o, c);
 
-/*
 // 108 Destructing Arrays 打散数组
 const arr = [2, 3, 4];
 const [x, y, z] = arr;
