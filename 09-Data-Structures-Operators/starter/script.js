@@ -70,6 +70,38 @@ const restaurant = {
   },
 };
 
+// 115 逻辑赋值运算符
+const rest1 = {
+  name: 'Capri',
+  numGuests: 0,
+};
+
+const rest2 = {
+  name: 'La Piazza',
+  owner: 'Giovanni Rossi',
+};
+
+// rest1.numGuests = rest1.numGuests || 10;
+// rest2.numGuests = rest2.numGuests || 10;
+
+// OR 赋值运算符：如等号左边值为假既赋值
+// rest1.numGuests ||= 10;
+// rest2.numGuests ||= 10;
+
+// nullish assignment operator (null or undefined)
+// 赋值运算符：如等号左边值为假既赋值
+rest1.numGuests ??= 10;
+rest2.numGuests ??= 10;
+
+// AND 赋值运算符：如等号左边值为真既赋值
+// rest1.owner = rest1.owner && '<ANONYMOUS>';
+// rest2.owner = rest2.owner && '<ANONYMOUS>';
+rest1.owner &&= '<ANONYMOUS>';
+rest2.owner &&= '<ANONYMOUS>';
+
+console.log(rest1, rest2);
+
+/*
 // 114 nullish coalesing operator ?? (ES2020)
 restaurant.numGuests = 0;
 const guest2 = restaurant.numGuests || 10;
@@ -79,7 +111,6 @@ console.log(guest2);
 const guest3 = restaurant.numGuests ?? 10;
 console.log(guest3);
 
-/*
 
 // 113 short circuiting && and ||
 // use any data type
