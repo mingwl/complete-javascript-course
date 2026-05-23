@@ -70,7 +70,18 @@ const restaurant = {
   },
 };
 
-// 103 short circuiting && and ||
+// 114 nullish coalesing operator ?? (ES2020)
+restaurant.numGuests = 0;
+const guest2 = restaurant.numGuests || 10;
+console.log(guest2);
+
+// nullish: null and undefined (not 0 nor '')
+const guest3 = restaurant.numGuests ?? 10;
+console.log(guest3);
+
+/*
+
+// 113 short circuiting && and ||
 // use any data type
 // return any data type
 // short-circuiting
@@ -106,7 +117,6 @@ if (restaurant.orderPizza) {
 
 restaurant.orderPizza && restaurant.orderPizza('mushrooms', 'spinach');
 
-/*
 
 // 112 the rest operator
 // 1.destructuring
