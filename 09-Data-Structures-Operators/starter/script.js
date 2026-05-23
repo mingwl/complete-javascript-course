@@ -119,6 +119,39 @@ const game = {
   },
 };
 
+// 122 Set (iterable)
+// param is also an iterable (string, array)
+const orderSet = new Set([
+  'Pasta',
+  'Pizza',
+  'Pizza',
+  'Risotto',
+  'Pasta',
+  'Pizza',
+]);
+console.log(
+  orderSet,
+  orderSet.size,
+  orderSet.has('Pizza'),
+  orderSet.has('Bread'),
+);
+orderSet.add('Garlic Bread');
+orderSet.add('Garlic Bread');
+orderSet.delete('Risotto');
+// orderSet.clear();
+console.log(orderSet);
+
+for (const order of orderSet) console.log(order);
+
+console.log(new Set('Jonas'));
+console.log(new Set());
+
+const staff = ['Waiter', 'Chef', 'Waiter', 'Manager', 'Chef', 'Waiter'];
+const staffUnique = [...new Set(staff)];
+console.log(staffUnique, staffUnique.length);
+console.log(new Set('jonasschmedtmann').size);
+
+/*
 // 121 数据结构习题2
 // 1.
 for (const [i, player] of game.scored.entries()) {
@@ -161,7 +194,6 @@ for (const player of game.scored) {
 }
 console.log(scorers);
 
-/*
 // 120 循环对象
 // Object's property-s names
 const properties = Object.keys(openingHours);
