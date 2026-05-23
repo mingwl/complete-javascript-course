@@ -119,6 +119,49 @@ const game = {
   },
 };
 
+// 121 数据结构习题2
+// 1.
+for (const [i, player] of game.scored.entries()) {
+  console.log(`Goal ${i + 1}: ${player}`);
+}
+
+// 2.
+const calcAvg = (...numbers) => {
+  let sum = 0;
+  for (const item of numbers) sum += item;
+  return sum / numbers.length;
+};
+// console.log(calcAvg(1, 2, 3, 4, 5));
+// const { team1, x: draw, team2 } = game.odds;
+// console.log(calcAvg(team1, draw, team2));
+const odds = Object.values(game.odds);
+// console.log(odds);
+console.log(calcAvg(...odds));
+
+// 3.
+// Odd of victory Bayern Munich: 1.33
+// Odd of draw: 3.25
+// Odd of victory Borrussia Dortmund: 6.5
+for (const [team, odd] of Object.entries(game.odds)) {
+  const str = team === 'x' ? 'draw' : `victory ${game[team]}`;
+  console.log(`Odd of ${str} ${odd}`);
+  // console.log(`Odd of ${game[team] || 'draw'}: ${odd}`);
+}
+
+// BONUS.
+const scorers = {};
+// for (const [i, item] of Object.entries(game.scored)) {
+//   console.log(i, item);
+//   scorers[item] &&= scorers[item]++;
+//   scorers[item] ??= 1;
+// }
+for (const player of game.scored) {
+  // console.log(player);
+  scorers[player] ? scorers[player]++ : (scorers[player] = 1);
+}
+console.log(scorers);
+
+/*
 // 120 循环对象
 // Object's property-s names
 const properties = Object.keys(openingHours);
@@ -141,7 +184,6 @@ for (const [day, { open: start, close: end }] of openEntries) {
   console.log(`On ${day} we open at ${start}h and we close at ${end}h`);
 }
 
-/*
 // 119 optional chaining ?. (ES2020)
 // false: null, undefined
 // true: 0, ''
