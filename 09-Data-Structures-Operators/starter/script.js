@@ -119,6 +119,31 @@ const game = {
   },
 };
 
+// 119 optional chaining ?. (ES2020)
+// false: null, undefined
+// true: 0, ''
+console.log(restaurant?.openingHours?.mon?.open);
+console.log(restaurant?.openingHours?.fri?.open);
+console.log(restaurant?.open?.mon?.open);
+console.log(restaurant?.open?.fri?.open);
+
+for (const day of weekdays) {
+  const open = restaurant?.openingHours[day]?.open ?? 'closed';
+  console.log(`on ${day}, we open at ${open}`);
+}
+
+// methods
+console.log(restaurant.order?.(0, 1) ?? 'method does not exist');
+console.log(restaurant.order2?.(0, 1) ?? 'method does not exist');
+
+// arrays
+const users = [{ name: 'Jonas', email: 'hello@jonas.io' }];
+const users2 = [];
+if (users2.length > 0) console.log(users[0]?.name);
+else console.log('users array empty');
+console.log(users[0]?.name ?? 'users array empty');
+console.log(users2[0]?.name ?? 'users array empty');
+
 // 118 enhanced object literal
 
 /*
