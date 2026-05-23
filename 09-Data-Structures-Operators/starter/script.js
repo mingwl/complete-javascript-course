@@ -112,6 +112,19 @@ const game = {
   },
 };
 
+// 117 for-of循环
+const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
+
+for (const item of menu) console.log(item);
+
+for (const [i, item] of menu.entries()) {
+  // console.log(`${item[0] + 1}: ${item[1]}`);
+  console.log(`${i + 1}: ${item}`);
+}
+// console.log([...menu.entries()]);
+
+/*
+// 116 数据结构习题1
 // 1.
 const [players1, players2] = game.players;
 console.log(players1, players2);
@@ -149,7 +162,6 @@ console.log(team1, team2);
 team1 < team2 && console.log(`team1 is more likely to win`);
 team2 < team1 && console.log(`team2 is more likely to win`);
 
-/*
 // 115 逻辑赋值运算符
 const rest1 = {
   name: 'Capri',
