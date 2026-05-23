@@ -70,6 +70,44 @@ const restaurant = {
   },
 };
 
+// 103 short circuiting && and ||
+// use any data type
+// return any data type
+// short-circuiting
+
+// || return the 1st trucy value
+// || 返回第一个真值 否则最后一个值
+console.log('--- OR ---');
+console.log(3 || 'Jonas'); // 3
+console.log('' || 'Jonas'); // Jonas
+console.log(true || 0); // true
+console.log(undefined || null); // null
+
+console.log(undefined || '' || 0 || 'hello' || 23 || null); // hello
+
+restaurant.numGuests = 0;
+const guests1 = restaurant.numGuests ? restaurant.numGuests : 10;
+console.log(guests1);
+
+const guest2 = restaurant.numGuests || 10;
+console.log(guest2);
+
+// && return the 1st faulsy value
+// && 返回第一个假值 否则最后一个值
+console.log('--- AND ---');
+console.log(0 && 'Jonas');
+console.log(7 && 'Jonas');
+
+console.log('Hello' && 23 && null && 'jonas');
+
+if (restaurant.orderPizza) {
+  restaurant.orderPizza('mushrooms', 'spinach');
+}
+
+restaurant.orderPizza && restaurant.orderPizza('mushrooms', 'spinach');
+
+/*
+
 // 112 the rest operator
 // 1.destructuring
 // spread, because on the RIGHT side of =
@@ -108,7 +146,6 @@ add(...x);
 restaurant.orderPizza('mushrooms', 'onion', 'olives', 'spinach');
 restaurant.orderPizza('mushrooms');
 
-/*
 
 // 111 the spread operator
 const arr = [7, 8, 9];
