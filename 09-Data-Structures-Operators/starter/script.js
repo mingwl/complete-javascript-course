@@ -119,6 +119,29 @@ const game = {
   },
 };
 
+// 120 循环对象
+// Object's property-s names
+const properties = Object.keys(openingHours);
+console.log(properties);
+let openStr = `We are open on ${properties.length} days: `;
+for (const day of properties) {
+  openStr += `${day}, `;
+}
+console.log(openStr);
+
+// object's property's values
+const values = Object.values(openingHours);
+console.log(values);
+
+// object's property's entries
+const openEntries = Object.entries(openingHours);
+// console.log(openEntries);
+
+for (const [day, { open: start, close: end }] of openEntries) {
+  console.log(`On ${day} we open at ${start}h and we close at ${end}h`);
+}
+
+/*
 // 119 optional chaining ?. (ES2020)
 // false: null, undefined
 // true: 0, ''
@@ -146,7 +169,6 @@ console.log(users2[0]?.name ?? 'users array empty');
 
 // 118 enhanced object literal
 
-/*
 // 117 for-of循环
 const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
 
