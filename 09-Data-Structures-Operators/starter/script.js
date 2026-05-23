@@ -23,29 +23,36 @@ const mexicanFoods = new Set([
 ]);
 
 // Data needed for first part of the section
+// 118 enhanced object literal
+const weekdays = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+const openingHours = {
+  [weekdays[3]]: {
+    open: 12,
+    close: 22,
+  },
+  [weekdays[4]]: {
+    open: 11,
+    close: 23,
+  },
+  [weekdays[5]]: {
+    open: 0, // Open 24 hours
+    close: 24,
+  },
+};
+
 const restaurant = {
   name: 'Classico Italiano',
   location: 'Via Angelo Tavanti 23, Firenze, Italy',
   categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'],
   starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
   mainMenu: ['Pizza', 'Pasta', 'Risotto'],
+  // before ES6
+  // openingHours: openingHours,
+  // ES6 enhanced object literals
+  openingHours,
 
-  openingHours: {
-    thu: {
-      open: 12,
-      close: 22,
-    },
-    fri: {
-      open: 11,
-      close: 23,
-    },
-    sat: {
-      open: 0, // Open 24 hours
-      close: 24,
-    },
-  },
-
-  order: function (starterIndex, mainIndex) {
+  // ES6 enhanced object literals
+  order(starterIndex, mainIndex) {
     return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
   },
 
@@ -112,6 +119,9 @@ const game = {
   },
 };
 
+// 118 enhanced object literal
+
+/*
 // 117 for-of循环
 const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
 
@@ -123,7 +133,6 @@ for (const [i, item] of menu.entries()) {
 }
 // console.log([...menu.entries()]);
 
-/*
 // 116 数据结构习题1
 // 1.
 const [players1, players2] = game.players;
