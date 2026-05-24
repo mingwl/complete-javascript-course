@@ -4,24 +4,6 @@
 const flights =
   '_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30';
 
-const italianFoods = new Set([
-  'pasta',
-  'gnocchi',
-  'tomatoes',
-  'olive oil',
-  'garlic',
-  'basil',
-]);
-
-const mexicanFoods = new Set([
-  'tortillas',
-  'beans',
-  'rice',
-  'tomatoes',
-  'avocado',
-  'garlic',
-]);
-
 // Data needed for first part of the section
 // 118 enhanced object literal
 const weekdays = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
@@ -119,6 +101,52 @@ const game = {
   },
 };
 
+const italianFoods = new Set([
+  'pasta',
+  'gnocchi',
+  'tomatoes',
+  'olive oil',
+  'garlic',
+  'basil',
+]);
+
+const mexicanFoods = new Set([
+  'tortillas',
+  'beans',
+  'rice',
+  'tomatoes',
+  'avocado',
+  'garlic',
+]);
+
+// 123 Set ES2025 7 new methods
+const commonFoods = italianFoods.intersection(mexicanFoods);
+console.log('intersection:', commonFoods);
+console.log([...commonFoods]);
+
+const italianMexicanFusion = italianFoods.union(mexicanFoods);
+console.log('union:', italianMexicanFusion);
+console.log([...italianMexicanFusion]);
+
+console.log([...new Set([...italianFoods, ...mexicanFoods])]);
+
+const uniqueItalianFoods = italianFoods.difference(mexicanFoods);
+console.log('unique italian', uniqueItalianFoods);
+
+const uniqueMexicanFoods = mexicanFoods.difference(italianFoods);
+console.log('unique mexican', uniqueMexicanFoods);
+
+const uniqueItalianMexicanFoods =
+  italianFoods.symmetricDifference(mexicanFoods);
+console.log('unique italian and mexican', uniqueItalianMexicanFoods);
+console.log(uniqueItalianFoods.union(uniqueMexicanFoods));
+
+console.log(
+  'italian maxican has no intersection:',
+  italianFoods.isDisjointFrom(mexicanFoods),
+);
+
+/*
 // 122 Set (iterable)
 // param is also an iterable (string, array)
 const orderSet = new Set([
@@ -151,7 +179,6 @@ const staffUnique = [...new Set(staff)];
 console.log(staffUnique, staffUnique.length);
 console.log(new Set('jonasschmedtmann').size);
 
-/*
 // 121 数据结构习题2
 // 1.
 for (const [i, player] of game.scored.entries()) {
