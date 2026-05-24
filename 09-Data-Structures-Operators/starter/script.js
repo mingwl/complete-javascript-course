@@ -101,6 +101,66 @@ const game = {
   },
 };
 
+// 129 处理字符串2
+const airline = 'TAP Air Portugal';
+console.log(airline.toLowerCase());
+console.log(airline.toUpperCase());
+
+// fix capitalization in name
+const passenger = 'jOnAS';
+// const passengerLower = passenger.toLowerCase();
+const passengerCorrect =
+  passenger.slice(0, 1).toUpperCase() + passenger.slice(1).toLowerCase();
+console.log(passengerCorrect);
+
+const capitalize = str =>
+  str.slice(0, 1).toUpperCase() + str.slice(1).toLowerCase();
+console.log(capitalize('jOnAS'));
+
+// comparing email
+const email = 'hello@jonas.io';
+const loginEmail = '   Hello@Jonas.Io \n';
+console.log(loginEmail.trim().toLowerCase() === email);
+
+// ES2019 trimStart() and trimEnd()
+const compareStr = (src, target) => src.trim().toLowerCase() === target;
+console.log(compareStr('   Hello@Jonas.Io \n', 'hello@jonas.io'));
+
+// replacing
+const priceGB = '299,97£';
+const priceCN = priceGB.replace('£', '¥').replace(',', '.');
+console.log(priceCN);
+
+const announcement = `All passengers come to bording door 23. Boarding door 23`;
+console.log(announcement.replaceAll('door', 'gate'));
+
+// 正则表达式 regexp
+console.log(announcement.replace(/door/g, 'gate2'));
+
+// booleans
+const plane = 'Airbus A320neo';
+console.log(plane.includes('A320'));
+console.log(plane.includes('Boeing'));
+console.log(plane.startsWith('Airb'));
+
+if (plane.startsWith('Airbus') && plane.endsWith('neo')) {
+  console.log('Part of the new airbus family');
+}
+
+// practice exercise
+const checkBaggage = function (items) {
+  const baggage = items.toLowerCase();
+  if (baggage.includes('knife') || baggage.includes('gun')) {
+    console.log(`You are NOT allowed on board`);
+  } else {
+    console.log(`Welcome aboard`);
+  }
+};
+checkBaggage(`I'v got a laptop, some Food and a pocket Knife`);
+checkBaggage(`Socks and cameras`);
+checkBaggage(`Got some snacks and a gun for protection`);
+
+/*
 // 128 处理字符串1
 const airline = 'TAP Air Portugal';
 const plane = 'A320';
@@ -145,7 +205,6 @@ console.log(new String('afd'));
 console.log(typeof new String('afd'));
 console.log(typeof new String('afd').slice(1));
 
-/*
 // 127 数据结构习题3
 const gameEvents = new Map([
   [17, '⚽️ GOAL'],
