@@ -101,6 +101,51 @@ const game = {
   },
 };
 
+// 128 处理字符串1
+const airline = 'TAP Air Portugal';
+const plane = 'A320';
+
+console.log(plane[0]);
+console.log(plane[1]);
+console.log(plane[2]);
+console.log('B737'[0]);
+
+console.log(airline.length);
+console.log('B737'.length);
+
+console.log(airline.indexOf('r'));
+console.log(airline.lastIndexOf('r'));
+console.log(airline.indexOf('Portugal'));
+
+console.log(airline.slice(4));
+console.log(airline.slice(4, 7));
+
+// extract the first word
+console.log(airline.slice(0, airline.indexOf(' ')));
+// extract the last word
+console.log(airline.slice(airline.lastIndexOf(' ') + 1));
+// extract from the end
+console.log(airline.slice(-2));
+console.log(airline.slice(1, -1));
+
+const checkMiddleSeat = function (seat) {
+  // B and E are middle seats
+  const lastLetter = seat.slice(-1);
+  // console.log(lastLetter);
+  const isMiddleSeat = ['B', 'E'].includes(lastLetter);
+  console.log(
+    `${seat} is a ${isMiddleSeat ? 'middle seat 😥' : 'NOT a middle seat 🎉'}`,
+  );
+};
+checkMiddleSeat('11B');
+checkMiddleSeat('23C');
+checkMiddleSeat('3E');
+
+console.log(new String('afd'));
+console.log(typeof new String('afd'));
+console.log(typeof new String('afd').slice(1));
+
+/*
 // 127 数据结构习题3
 const gameEvents = new Map([
   [17, '⚽️ GOAL'],
@@ -137,7 +182,6 @@ for (const [min, event] of gameEvents) {
   console.log(`[${half} HALF] ${min}: ${event}`);
 }
 
-/*
 // 125 Map循环
 const question = new Map([
   ['question', 'What is the best programming language in the world?'],
