@@ -101,6 +101,55 @@ const game = {
   },
 };
 
+// 130 处理字符串3
+console.log('a+very+nice+string'.split('+'));
+console.log('Jonas Schmedtmann'.split(' '));
+
+// split and join
+const [firstName, lastName] = 'Jonas Schmedtmann'.split(' ');
+console.log(firstName, lastName);
+console.log(`Mr. ${firstName} ${lastName.toUpperCase()} `);
+
+const newName = ['Mr.', firstName, lastName.toUpperCase()].join(' ');
+console.log(newName);
+
+const capitalizeName = function (name) {
+  const words = name.split(' ');
+  const result = [];
+  for (const word of words) {
+    // result.push(word[0].toUpperCase() + word.slice(1));
+    result.push(word.replace(word[0], word[0].toUpperCase()));
+  }
+  return result.join(' ');
+};
+const passenger = `jessica ann smish devis`;
+console.log(capitalizeName(passenger));
+console.log(capitalizeName('jonas schmedtmann'));
+
+// padding the string
+const message = 'Go to gate 23';
+console.log(message.padStart(20, '*').padEnd(30, '*'));
+console.log('Jonas'.padStart(20, '*').padEnd(30, '*'));
+
+const maskCreditCard = function (number) {
+  const str = number + '';
+  // console.log(str.length);
+  return str.slice(-4).padStart(str.length, '*');
+};
+console.log(maskCreditCard(1234567890));
+console.log(maskCreditCard('1234567890'));
+
+// repeat
+const message2 = 'Bad weather... all departures deplayed';
+console.log(message2.repeat(3));
+
+const planesInLine = function (n) {
+  console.log(`There are ${n} planes in lines ${'✈️'.repeat(n)}`);
+};
+planesInLine(5);
+planesInLine(10);
+
+/*
 // 129 处理字符串2
 const airline = 'TAP Air Portugal';
 console.log(airline.toLowerCase());
@@ -160,7 +209,6 @@ checkBaggage(`I'v got a laptop, some Food and a pocket Knife`);
 checkBaggage(`Socks and cameras`);
 checkBaggage(`Got some snacks and a gun for protection`);
 
-/*
 // 128 处理字符串1
 const airline = 'TAP Air Portugal';
 const plane = 'A320';
