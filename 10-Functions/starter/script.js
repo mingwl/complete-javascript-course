@@ -1,5 +1,28 @@
 'use strict';
 
+// 144 Closures函数创建时执行上下文中的封闭变量环境
+// 是函数生成时对所需变量的引用
+// A function has access to the variable environment VE of the execution context in which it was created
+// 函数只能访问创建时的执行上下文中的变量环境
+// call stack: order in which functions were called
+// scope chain: order in which functions are written in code
+const secureBooking = function () {
+  let passengerCount = 0;
+
+  return function () {
+    passengerCount++;
+    console.log(`${passengerCount} passengers`);
+  };
+};
+
+const booker = secureBooking();
+booker();
+booker();
+booker();
+
+console.dir(booker);
+
+/* 
 // 143 立即调用函数表达式 Immediately Invoked Function Expression (IIFE)
 // 函数调用一次后即消失 无引用
 const runOnce = function () {
@@ -29,7 +52,6 @@ runOnce();
 // console.log(isPrivate);
 console.log(notPrivate);
 
-/* 
 // 142: 函数习题1
 ///////////////////////////////////////
 // Coding Challenge #1
