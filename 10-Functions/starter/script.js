@@ -52,6 +52,49 @@ console.log(swiss);
 book.call(swiss, ...flightData);
 console.log(swiss);
 
+// 141 重置this关键词(bind)
+// bind: 返回绑定了this关键词的新函数
+const bookEW = book.bind(eurowings);
+const bookLH = book.bind(lufthansa);
+const bookLX = book.bind(swiss);
+const bookEW23 = book.bind(eurowings, 23);
+
+bookEW(23, 'Steven Williams');
+bookEW23('Jonas Schemdtmann');
+bookEW23('Martha Cooper');
+console.log(eurowings);
+
+// 事件监听器
+lufthansa.planes = 300;
+lufthansa.buyPlane = function () {
+  console.log('buyPlane.this:', this);
+  this.planes++;
+  console.log('planes:', this.planes);
+};
+// lufthansa.buyPlane();
+
+// 事件监听器回调函数中的this关键词指向其对应dom元素
+document
+  .querySelector('.buy')
+  .addEventListener('click', lufthansa.buyPlane.bind(lufthansa));
+
+// 提前设置函数参数: partial application
+const addTax = (rate, value) => value + value * rate;
+console.log(addTax(0.1, 200));
+
+const addVAT = addTax.bind(null, 0.23);
+console.log(addVAT(100));
+console.log(addVAT(23));
+
+const addTaxRate = function (rate) {
+  return function (value) {
+    return value + value * rate;
+  };
+};
+const addVAT023 = addTaxRate(0.23);
+console.log('addVAT023', addVAT023(100));
+console.log('addVAT023', addVAT023(23));
+
 /*
 // 139 返回新函数的高阶函数
 // 函数表达式
