@@ -1,6 +1,16 @@
 'use strict';
 
-// 145 Closures
+// 146 函数习题2(Closures)
+(function () {
+  const header = document.querySelector('h1');
+  header.style.color = 'red';
+  document.querySelector('body').addEventListener('click', function () {
+    header.style.color = 'blue';
+  });
+})();
+
+/* 
+// 145 Closures函数重启与Timer
 let f;
 
 // 例题1 (函数重启两次)
@@ -55,7 +65,6 @@ const boardPassenger = function (passengerNum, wait) {
 const passengerPerGroup = 1000;
 boardPassenger(180, 3);
 
-/* 
 // 144 Closures函数创建时执行上下文中的封闭变量环境
 // 是函数生成时对所需变量的引用
 // A function has access to the variable environment VE of the execution context in which it was created
