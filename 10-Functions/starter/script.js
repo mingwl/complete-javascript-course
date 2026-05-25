@@ -1,5 +1,23 @@
 'use strict';
 
+// 139 返回新函数的高阶函数
+// 函数表达式
+const greet = function (greeting) {
+  return function (name) {
+    console.log(`${greeting} ${name}`);
+  };
+};
+const greeterHey = greet('Hey');
+greeterHey('Jonas');
+greeterHey('Steven');
+
+greet('Hello')('Jonas2');
+
+// 箭头函数
+const greetArrow = greeting => name => console.log(`${greeting} ${name}`);
+greet('Hi')('JonasArrow');
+
+/*
 // 138 接收回调函数的函数
 const oneWord = function (str) {
   // return str.replaceAll(' ', '');
@@ -32,7 +50,6 @@ document.body.addEventListener('click', high5);
 // called backed function: high5
 ['Jonas', 'Martha', 'Adam'].forEach(high5);
 
-/*
 // 136 函数数值与引用参数
 const flight = 'LH234';
 const jonas = {
