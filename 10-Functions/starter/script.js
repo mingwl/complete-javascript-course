@@ -1,5 +1,35 @@
 'use strict';
 
+// 143 立即调用函数表达式 Immediately Invoked Function Expression (IIFE)
+// 函数调用一次后即消失 无引用
+const runOnce = function () {
+  console.log(`This will never run again`);
+};
+runOnce();
+runOnce();
+runOnce();
+
+// 立即调用函数表达式
+(function () {
+  console.log(`This will never run again 2 expr`);
+  const isPrivate = 23;
+})();
+// isPrivate is undefined
+// console.log(isPrivate);
+
+(() => console.log(`This will never run again 2 arrow`))();
+
+{
+  // 块作用域：const/let
+  const isPrivate = 23;
+  // 函数作用域：var
+  var notPrivate = 46;
+}
+// isPrivate is undefined
+// console.log(isPrivate);
+console.log(notPrivate);
+
+/* 
 // 142: 函数习题1
 ///////////////////////////////////////
 // Coding Challenge #1
@@ -51,7 +81,6 @@ const displayResults1 = poll.displayResults.bind({
 displayResults1();
 displayResults1('string');
 
-/* 
 Let's build a simple poll app!
 
 A poll has a question, an array of options from which people can choose, and an array with the number of replies for each option. This data is stored in the starter object below.
