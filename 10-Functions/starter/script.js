@@ -1,5 +1,61 @@
 'use strict';
 
+// 145 Closures
+let f;
+
+// 例题1 (函数重启两次)
+// f函数第一个closure
+const g = function () {
+  const a = 23;
+  f = function () {
+    console.log(a * 2);
+  };
+};
+
+// f函数重启后第二个closure
+const h = function () {
+  const b = 111;
+  f = function () {
+    console.log(b * 2);
+  };
+};
+
+g();
+f();
+// f函数第一个closure
+console.dir(f);
+
+// reassign f function
+h();
+f();
+// f函数重启后第二个closure
+console.dir(f);
+
+// 一秒后回调函数
+setTimeout(function () {
+  console.log('TIMER');
+}, 1000);
+
+// 例题2 (timer)
+const boardPassenger = function (passengerNum, wait) {
+  const groupNum = 3;
+  const passengerPerGroup = passengerNum / groupNum;
+
+  setTimeout(function () {
+    console.log(`We are now boarding all ${passengerNum} passengers`);
+    console.log(
+      `There are ${groupNum} groups, each with ${passengerPerGroup} passengers`,
+    );
+  }, wait * 1000);
+
+  console.log(`Will start boarding in ${wait} sec`);
+};
+
+// closure比作用域链更有优先权
+const passengerPerGroup = 1000;
+boardPassenger(180, 3);
+
+/* 
 // 144 Closures函数创建时执行上下文中的封闭变量环境
 // 是函数生成时对所需变量的引用
 // A function has access to the variable environment VE of the execution context in which it was created
@@ -22,7 +78,6 @@ booker();
 
 console.dir(booker);
 
-/* 
 // 143 立即调用函数表达式 Immediately Invoked Function Expression (IIFE)
 // 函数调用一次后即消失 无引用
 const runOnce = function () {
