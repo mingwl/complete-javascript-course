@@ -1,5 +1,58 @@
 'use strict';
 
+// 140 重置this关键词(call/apply)
+const lufthansa = {
+  airline: 'Lufthansa',
+  iataCode: 'LH',
+  bookings: [],
+  // book: function(){}
+  // 增强对象表达式：
+  book(flightNum, name) {
+    console.log(
+      `${name} booked a seat on ${this.airline} flight ${this.iataCode}${flightNum}`,
+    );
+    this.bookings.push({ flight: `${this.iataCode}${flightNum}`, name });
+  },
+};
+
+lufthansa.book(239, 'Jonas Schmedtmann');
+lufthansa.book(635, 'John Smith');
+console.log(lufthansa);
+
+const eurowings = {
+  name: 'Eurowings',
+  iataCode: 'EW',
+  bookings: [],
+};
+
+const book = lufthansa.book;
+
+// book(23, 'Sara Williams');
+// call: 调用函数重置this关键词
+// call: 参数列表逐个出现
+book.call(eurowings, 23, 'Sarah Williams');
+console.log(eurowings);
+
+book.call(lufthansa, 239, 'Mary Cooper');
+console.log(lufthansa);
+
+const swiss = {
+  airline: 'Swiss Airline',
+  iataCode: 'LX',
+  bookings: [],
+};
+book.call(swiss, 583, 'Mary Cooper');
+console.log(swiss);
+
+// apply: 参数列表以数组形式出现
+const flightData = [583, 'George Cooper'];
+book.apply(swiss, flightData);
+console.log(swiss);
+
+book.call(swiss, ...flightData);
+console.log(swiss);
+
+/*
 // 139 返回新函数的高阶函数
 // 函数表达式
 const greet = function (greeting) {
@@ -17,7 +70,6 @@ greet('Hello')('Jonas2');
 const greetArrow = greeting => name => console.log(`${greeting} ${name}`);
 greet('Hi')('JonasArrow');
 
-/*
 // 138 接收回调函数的函数
 const oneWord = function (str) {
   // return str.replaceAll(' ', '');
