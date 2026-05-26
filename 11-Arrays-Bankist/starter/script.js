@@ -75,6 +75,22 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
 
+// 150 数组方法at (ES2022)
+const arr = [23, 11, 64];
+console.log(`返回数组第一个值`);
+console.log(arr[0]);
+console.log(arr.at(0));
+
+console.log(`返回数组最后一个值`);
+console.log(arr[arr.length - 1]);
+console.log(arr.slice(-1)[0]);
+console.log(arr.at(-1));
+
+console.log(`作用于字符串`);
+console.log('jonas'.at(0));
+console.log('jonas'.at(-1));
+
+/*
 // 149 简单数组方法
 let arr = ['a', 'b', 'c', 'd', 'e'];
 
@@ -108,3 +124,4 @@ console.log([...arr, ...arr2]);
 
 console.log(`join`);
 console.log(letters.join(' - '));
+*/
