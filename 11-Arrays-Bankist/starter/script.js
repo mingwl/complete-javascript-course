@@ -73,6 +73,25 @@ const currencies = new Map([
 
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
+// 151 forEach迭代数组高阶函数
+console.log(`--- forof迭代数组 ---`);
+// for (const mov of movements) {
+for (const [i, mov] of movements.entries()) {
+  console.log(
+    `${i + 1}: You ${mov > 0 ? 'deposited' : 'withdraw'} ${Math.abs(mov)}`,
+  );
+}
+
+console.log(
+  `--- forEach高阶函数(high-order function)迭代数组(无法用continue/break跳出迭代)---`,
+);
+movements.forEach(function (mov, i, arr) {
+  console.log(
+    `${i + 1}: You ${mov > 0 ? 'deposited' : 'withdraw'} ${Math.abs(mov)}`,
+  );
+});
+
+/*
 /////////////////////////////////////////////////
 
 // 150 数组方法at (ES2022)
@@ -90,7 +109,6 @@ console.log(`作用于字符串`);
 console.log('jonas'.at(0));
 console.log('jonas'.at(-1));
 
-/*
 // 149 简单数组方法
 let arr = ['a', 'b', 'c', 'd', 'e'];
 
