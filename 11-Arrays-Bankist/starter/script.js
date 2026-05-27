@@ -73,6 +73,21 @@ const currencies = new Map([
 
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
+// 152 forEach迭代集映射高阶函数
+
+// 映射map
+currencies.forEach(function (value, key, map) {
+  console.log(`${key}: ${value}`);
+});
+
+// 集set
+const currenciesUnique = new Set(['USD', 'GBP', 'USD', 'EUR', 'EUR']);
+console.log(currenciesUnique);
+currenciesUnique.forEach(function (value, _, map) {
+  console.log(`${value}: ${value}`);
+});
+
+/*
 // 151 forEach迭代数组高阶函数
 console.log(`--- forof迭代数组 ---`);
 // for (const mov of movements) {
