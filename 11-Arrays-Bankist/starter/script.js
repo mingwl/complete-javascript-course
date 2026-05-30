@@ -78,6 +78,7 @@ const displayMovs = function (movs) {
 };
 displayMovs(account1.movements);
 
+/*
 ///////////////////////////////////////
 // 154 Coding Challenge #1
 
@@ -105,6 +106,7 @@ const checkDogs = function (dogsJulia, dogsKate) {
 };
 // checkDogs([3, 5, 2, 12, 7], [4, 1, 15, 8, 3]);
 checkDogs([9, 16, 6, 8, 3], [10, 5, 6, 1, 4]);
+*/
 
 /* 
 Julia and Kate are doing a study on dogs. So each of them asked 5 dog owners about their dog's age, and stored the data into an array (one array for each). For now, they are just interested in knowing whether a dog is an adult or a puppy. A dog is an adult if it is at least 3 years old, and it's a puppy if it's less than 3 years old.
@@ -128,7 +130,7 @@ GOOD LUCK 😀
 /////////////////////////////////////////////////
 // LECTURES
 
-/*
+// 157 数据转换之map
 const currencies = new Map([
   ['USD', 'United States dollar'],
   ['EUR', 'Euro'],
@@ -136,7 +138,28 @@ const currencies = new Map([
 ]);
 
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+console.log(movements);
+const eurToUsd = 1.1;
 
+const movsUSDfor = [];
+for (const mov of movements) movsUSDfor.push(mov * eurToUsd);
+console.log(movsUSDfor);
+
+const movsUSD = movements.map(function (mov) {
+  return mov * eurToUsd;
+});
+console.log(movsUSD);
+
+const movsUSDArrow = movements.map(mov => mov * eurToUsd);
+console.log(movsUSDArrow);
+
+const movsDescription = movements.map(
+  (mov, i, arr) =>
+    `Movement ${i + 1}: you ${mov > 0 ? 'deposited' : 'withdrew'} ${Math.abs(mov)}`,
+);
+console.log(movsDescription);
+
+/*
 // 152 forEach迭代集映射高阶函数
 
 // 映射map
