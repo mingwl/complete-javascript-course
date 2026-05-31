@@ -98,10 +98,11 @@ const calcDisplaySummary = function (movements) {
   const interest = movements
     .filter(mov => mov > 0)
     .map(deposit => (deposit * 1.2) / 100)
-    .filter((int, i, arr) => {
-      console.log(arr);
-      return int >= 1;
-    })
+    .filter((int, i, arr) => int >= 1)
+    // .filter((int, i, arr) => {
+    //   console.log(arr);
+    //   return int >= 1;
+    // })
     .reduce((acc, int) => acc + int, 0);
   labelSumInterest.textContent = `${interest}€`;
 };
@@ -118,6 +119,16 @@ const createUsernames = accounts =>
   accounts.forEach(acc => (acc.username = getUsername(acc.owner)));
 createUsernames(accounts);
 
+// 164 所搜函数find
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+const firstWithdrawal = movements.find(mov => mov < 0);
+console.log(firstWithdrawal);
+
+console.log(accounts);
+const account = accounts.find(acc => acc.owner === 'Jessica Davis');
+console.log(account);
+
+/*
 // 163 Coding Challenge #3
 // 161 Coding Challenge #2
 const calcAverageHumanAge = function (ages) {
@@ -130,9 +141,7 @@ const calcAverageHumanAge = function (ages) {
 };
 console.log(calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]));
 
-/*
 // 162 串联函数
-const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 const euroToUsd = 1.1;
 
 const totalDepositsUSD = movements
