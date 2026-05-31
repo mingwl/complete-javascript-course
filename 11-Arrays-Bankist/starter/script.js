@@ -95,6 +95,22 @@ const createUsernames = accounts =>
   accounts.forEach(acc => (acc.username = getUsername(acc.owner)));
 createUsernames(accounts);
 
+// 161 Coding Challenge #2
+const calcAverageHumanAge = function (ages) {
+  console.log(ages);
+  const humanAges = ages.map(age => (age <= 2 ? 2 * age : 16 + age * 4));
+  console.log(humanAges);
+  const adults = humanAges.filter(age => age > 18);
+  console.log(adults);
+  // (2+3)/2=2.5 => 2/2+3/2=2.5
+  // const avg = adults.reduce((acc, age) => acc + age, 0) / adults.length;
+  const avg = adults.reduce((acc, age, i, arr) => acc + age / arr.length, 0);
+  console.log(avg);
+  return avg;
+};
+console.log(calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]));
+
+/*
 // 160 精简函数reduce
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
@@ -117,7 +133,6 @@ const max = movements.reduce(
 );
 console.log(max);
 
-/*
 // 159 过滤函数filter
 
 const depositsFor = [];
