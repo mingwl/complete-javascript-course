@@ -76,28 +76,26 @@ const displayMovs = function (movs) {
     containerMovements.insertAdjacentHTML('afterbegin', html);
   });
 };
-displayMovs(account1.movements);
 
 const calcDisplayBalance = function (movements) {
   const balance = movements.reduce((acc, mov) => acc + mov, 0);
   labelBalance.textContent = `${balance}€`;
 };
-calcDisplayBalance(account1.movements);
 
-const calcDisplaySummary = function (movements) {
-  const incomes = movements
+const calcDisplaySummary = function (acc) {
+  const incomes = acc.movements
     .filter(mov => mov > 0)
     .reduce((acc, mov) => acc + mov, 0);
   labelSumIn.textContent = `${incomes}€`;
 
-  const out = movements
+  const out = acc.movements
     .filter(mov => mov < 0)
     .reduce((acc, mov) => acc + mov, 0);
   labelSumOut.textContent = `${Math.abs(out)}€`;
 
-  const interest = movements
+  const interest = acc.movements
     .filter(mov => mov > 0)
-    .map(deposit => (deposit * 1.2) / 100)
+    .map(deposit => (deposit * acc.interestRate) / 100)
     .filter((int, i, arr) => int >= 1)
     // .filter((int, i, arr) => {
     //   console.log(arr);
@@ -106,7 +104,6 @@ const calcDisplaySummary = function (movements) {
     .reduce((acc, int) => acc + int, 0);
   labelSumInterest.textContent = `${interest}€`;
 };
-calcDisplaySummary(account1.movements);
 
 // 158 生成用户名
 const getUsername = owner =>
@@ -119,6 +116,46 @@ const createUsernames = accounts =>
   accounts.forEach(acc => (acc.username = getUsername(acc.owner)));
 createUsernames(accounts);
 
+// 165 实现登录
+// event handler
+let currentAccount;
+btnLogin.addEventListener('click', function (e) {
+  // 避免表格提交时默认刷新网页
+  e.preventDefault();
+  console.log(inputLoginUsername.value, inputLoginPin.value);
+  currentAccount = accounts.find(
+    acc => acc.username === inputLoginUsername.value,
+  );
+  console.log(currentAccount);
+
+  if (currentAccount?.pin === Number(inputLoginPin.value)) {
+    // 显示欢迎语句
+    labelWelcome.textContent = `${currentAccount.owner.split(' ')[0]}欢迎回来`;
+
+    // 显示界面
+    containerApp.style.opacity = 1;
+
+    // 清空输入栏
+    inputLoginUsername.value = inputLoginPin.value = '';
+
+    // 输入栏失去焦点
+    inputLoginPin.blur();
+
+    // 显示交易
+    displayMovs(currentAccount.movements);
+
+    // 显示余额
+    calcDisplayBalance(currentAccount.movements);
+
+    // 显示概况
+    calcDisplaySummary(currentAccount);
+  } else {
+    labelWelcome.textContent = `登录失败`;
+    containerApp.style.opacity = 0;
+  }
+});
+
+/*
 // 164 所搜函数find
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 const firstWithdrawal = movements.find(mov => mov < 0);
@@ -128,7 +165,6 @@ console.log(accounts);
 const account = accounts.find(acc => acc.owner === 'Jessica Davis');
 console.log(account);
 
-/*
 // 163 Coding Challenge #3
 // 161 Coding Challenge #2
 const calcAverageHumanAge = function (ages) {
