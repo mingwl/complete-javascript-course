@@ -228,9 +228,35 @@ btnClose.addEventListener('click', function (e) {
   inputCloseUsername.value = inputClosePin.value = '';
 });
 
+// 168 所搜函数findLast/findLastIndex
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+console.log(movements);
+
+const movIsWithdrawal = mov => mov < 0;
+const lastWithdrawal = movements.findLast(movIsWithdrawal);
+const lastWithdrawalIndex = movements.findLastIndex(movIsWithdrawal);
+
+console.log(`${lastWithdrawal} at ${lastWithdrawalIndex}`);
+
+const largeMov = movements.reduce(
+  (acc, mov) => (mov > acc ? mov : acc),
+  movements[0],
+);
+const largetMovIndex = movements.findLastIndex(mov => mov === largeMov);
+const largetMovLastIndex = movements.findLastIndex(mov => mov === largeMov);
+console.log(
+  `Your latest large movement ${largeMov} was ${largetMovIndex}/${largetMovLastIndex} movements ago`,
+);
+
+const latestLargeMovIndex = movements.findLastIndex(mov =>
+  Math.abs(mov >= 2000),
+);
+console.log(
+  `Your latest large movement was ${movements.length - latestLargeMovIndex} movements ago`,
+);
+
 /*
 // 164 所搜函数find
-const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 const firstWithdrawal = movements.find(mov => mov < 0);
 console.log(firstWithdrawal);
 
