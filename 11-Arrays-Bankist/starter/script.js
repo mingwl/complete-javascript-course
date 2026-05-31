@@ -118,21 +118,19 @@ const createUsernames = accounts =>
   accounts.forEach(acc => (acc.username = getUsername(acc.owner)));
 createUsernames(accounts);
 
+// 163 Coding Challenge #3
 // 161 Coding Challenge #2
 const calcAverageHumanAge = function (ages) {
-  console.log(ages);
-  const humanAges = ages.map(age => (age <= 2 ? 2 * age : 16 + age * 4));
-  console.log(humanAges);
-  const adults = humanAges.filter(age => age > 18);
-  console.log(adults);
+  return ages
+    .map(age => (age <= 2 ? 2 * age : 16 + age * 4))
+    .filter(age => age > 18)
+    .reduce((acc, age, i, arr) => acc + age / arr.length, 0);
   // (2+3)/2=2.5 => 2/2+3/2=2.5
   // const avg = adults.reduce((acc, age) => acc + age, 0) / adults.length;
-  const avg = adults.reduce((acc, age, i, arr) => acc + age / arr.length, 0);
-  console.log(avg);
-  return avg;
 };
 console.log(calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]));
 
+/*
 // 162 串联函数
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 const euroToUsd = 1.1;
@@ -147,7 +145,6 @@ const totalDepositsUSD = movements
   .reduce((acc, mov) => acc + mov, 0);
 console.log(totalDepositsUSD);
 
-/*
 // 160 精简函数reduce
 
 let balanceFor = 0;
