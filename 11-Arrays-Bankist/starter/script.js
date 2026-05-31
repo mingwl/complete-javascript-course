@@ -193,6 +193,41 @@ btnTransfer.addEventListener('click', function (e) {
   // }
 });
 
+// 167 所搜函数findIndex
+btnClose.addEventListener('click', function (e) {
+  e.preventDefault();
+
+  const usernameToClose = inputCloseUsername.value;
+  const pinToClose = Number(inputClosePin.value);
+  console.log(`close ${usernameToClose} having pin ${pinToClose}`);
+
+  // const indexToClose = accounts.findIndex(
+  //   acc => acc.username === usernameToClose,
+  // );
+  // console.log(indexToClose);
+
+  // if (
+  //   indexToClose !== -1 &&
+  //   accounts[indexToClose] === currentAccount &&
+  //   accounts[indexToClose].pin === pinToClose
+  // ) {
+  //   accounts.splice(indexToClose, 1);
+  // }
+
+  if (
+    currentAccount.username === usernameToClose &&
+    currentAccount.pin === pinToClose
+  ) {
+    const indexToClose = accounts.findIndex(
+      acc => acc.username === currentAccount.username,
+    );
+    accounts.splice(indexToClose, 1);
+    containerApp.style.opacity = 0;
+  }
+
+  inputCloseUsername.value = inputClosePin.value = '';
+});
+
 /*
 // 164 所搜函数find
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
