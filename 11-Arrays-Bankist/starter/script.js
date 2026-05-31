@@ -62,9 +62,9 @@ const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
 // 153 创建dom元素
-const displayMovs = function (movs) {
+const displayMovs = function (acc) {
   containerMovements.innerHTML = '';
-  movs.forEach(function (mov, i) {
+  acc.movements.forEach(function (mov, i) {
     const type = mov > 0 ? 'deposit' : 'withdrawal';
     const html = `
         <div class="movements__row">
@@ -77,9 +77,9 @@ const displayMovs = function (movs) {
   });
 };
 
-const calcDisplayBalance = function (movements) {
-  const balance = movements.reduce((acc, mov) => acc + mov, 0);
-  labelBalance.textContent = `${balance}€`;
+const calcDisplayBalance = function (acc) {
+  acc.balance = acc.movements.reduce((acc, mov) => acc + mov, 0);
+  labelBalance.textContent = `${acc.balance}€`;
 };
 
 const calcDisplaySummary = function (acc) {
@@ -116,17 +116,28 @@ const createUsernames = accounts =>
   accounts.forEach(acc => (acc.username = getUsername(acc.owner)));
 createUsernames(accounts);
 
+const updateUI = function (acc) {
+  // 显示交易
+  displayMovs(acc);
+
+  // 显示余额
+  calcDisplayBalance(acc);
+
+  // 显示概况
+  calcDisplaySummary(acc);
+};
+
 // 165 实现登录
 // event handler
 let currentAccount;
 btnLogin.addEventListener('click', function (e) {
   // 避免表格提交时默认刷新网页
   e.preventDefault();
-  console.log(inputLoginUsername.value, inputLoginPin.value);
+  // console.log(inputLoginUsername.value, inputLoginPin.value);
   currentAccount = accounts.find(
     acc => acc.username === inputLoginUsername.value,
   );
-  console.log(currentAccount);
+  // console.log(currentAccount);
 
   if (currentAccount?.pin === Number(inputLoginPin.value)) {
     // 显示欢迎语句
@@ -141,18 +152,45 @@ btnLogin.addEventListener('click', function (e) {
     // 输入栏失去焦点
     inputLoginPin.blur();
 
-    // 显示交易
-    displayMovs(currentAccount.movements);
-
-    // 显示余额
-    calcDisplayBalance(currentAccount.movements);
-
-    // 显示概况
-    calcDisplaySummary(currentAccount);
+    // 更新页面
+    updateUI(currentAccount);
   } else {
     labelWelcome.textContent = `登录失败`;
     containerApp.style.opacity = 0;
   }
+});
+
+// 166 实现转账
+btnTransfer.addEventListener('click', function (e) {
+  e.preventDefault();
+
+  const transfertAmount = Number(inputTransferAmount.value);
+  const transfertToUsername = inputTransferTo.value;
+  // console.log(`transfert ${transfertAmount}'€ to ${transfertToUsername}`);
+
+  const transfertToAccount = accounts.find(
+    acc => acc.username === inputTransferTo.value,
+  );
+  // console.log(transfertToAccount);
+  inputTransferAmount.value = inputTransferTo.value = '';
+
+  if (
+    transfertAmount > 0 &&
+    transfertAmount <= currentAccount.balance &&
+    transfertToAccount &&
+    transfertToAccount?.username !== currentAccount.username
+  ) {
+    // console.log(`transfert valid`);
+    // 转账
+    currentAccount.movements.push(-transfertAmount);
+    transfertToAccount.movements.push(transfertAmount);
+
+    // 更新页面
+    updateUI(currentAccount);
+  }
+  // else {
+  // console.log(`transfert NOT valid`);
+  // }
 });
 
 /*
