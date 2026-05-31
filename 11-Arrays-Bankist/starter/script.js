@@ -78,6 +78,16 @@ const displayMovs = function (movs) {
 };
 displayMovs(account1.movements);
 
+// 158 生成用户名
+const getUsername = owner =>
+  owner
+    .toLowerCase()
+    .split(' ')
+    .map(word => word[0])
+    .join('');
+const createUsernames = accounts =>
+  accounts.forEach(acc => (acc.username = getUsername(acc.owner)));
+createUsernames(accounts);
 /*
 ///////////////////////////////////////
 // 154 Coding Challenge #1
@@ -130,6 +140,7 @@ GOOD LUCK 😀
 /////////////////////////////////////////////////
 // LECTURES
 
+/*
 // 157 数据转换之map
 const currencies = new Map([
   ['USD', 'United States dollar'],
@@ -159,7 +170,6 @@ const movsDescription = movements.map(
 );
 console.log(movsDescription);
 
-/*
 // 152 forEach迭代集映射高阶函数
 
 // 映射map
