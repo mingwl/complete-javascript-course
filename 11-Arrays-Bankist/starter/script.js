@@ -78,6 +78,12 @@ const displayMovs = function (movs) {
 };
 displayMovs(account1.movements);
 
+const calcDisplayBalance = function (movements) {
+  const balance = movements.reduce((acc, mov) => acc + mov, 0);
+  labelBalance.textContent = `${balance}¥`;
+};
+calcDisplayBalance(account1.movements);
+
 // 158 生成用户名
 const getUsername = owner =>
   owner
@@ -89,8 +95,30 @@ const createUsernames = accounts =>
   accounts.forEach(acc => (acc.username = getUsername(acc.owner)));
 createUsernames(accounts);
 
-// 159 过滤函数filter
+// 160 精简函数reduce
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
+let balanceFor = 0;
+for (const mov of movements) balanceFor += mov;
+console.log(balanceFor);
+
+// accumulator is like snowball
+// const balance = movements.reduce(function (acc, cur, i, arr) {
+//   console.log(`${i}: ${acc} + ${cur}`);
+//   return acc + cur;
+// }, 0);
+const balance = movements.reduce((acc, cur) => acc + cur, 0);
+console.log(balance);
+
+// get max value
+const max = movements.reduce(
+  (acc, cur) => (cur > acc ? cur : acc),
+  movements[0],
+);
+console.log(max);
+
+/*
+// 159 过滤函数filter
 
 const depositsFor = [];
 for (const mov of movements) {
@@ -107,7 +135,6 @@ console.log(deposits);
 const withdrawals = movements.filter(mov => mov < 0);
 console.log(withdrawals);
 
-/*
 ///////////////////////////////////////
 // 154 Coding Challenge #1
 
