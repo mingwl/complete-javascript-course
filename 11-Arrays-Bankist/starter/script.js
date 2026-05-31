@@ -193,6 +193,20 @@ btnTransfer.addEventListener('click', function (e) {
   // }
 });
 
+btnLoan.addEventListener('click', function (e) {
+  e.preventDefault();
+
+  const loan = Number(inputLoanAmount.value);
+  console.log(`You request for ${loan} loan`);
+  inputLoanAmount.value = '';
+
+  if (loan > 0 && currentAccount.movements.some(mov => mov >= loan * 0.1)) {
+    console.log('loan valid');
+    currentAccount.movements.push(loan);
+    updateUI(currentAccount);
+  }
+});
+
 // 167 所搜函数findIndex
 btnClose.addEventListener('click', function (e) {
   e.preventDefault();
@@ -228,8 +242,39 @@ btnClose.addEventListener('click', function (e) {
   inputCloseUsername.value = inputClosePin.value = '';
 });
 
-// 168 所搜函数findLast/findLastIndex
+// 169 搜索函数some/every
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
+// 等于
+console.log('等于1', movements.includes(-130));
+console.log(
+  '等于2',
+  movements.some(mov => mov === -130),
+);
+
+// some条件：任何项符合条件
+const anyDeposit = movements.some(mov => mov > 1500);
+console.log(anyDeposit);
+
+// every条件：任何项符合条件
+console.log(movements.every(mov => mov > 0));
+console.log(account4.movements.every(mov => mov > 0));
+
+// 回调函数
+const deposit = mov => mov > 0;
+console.log(`--- 回调函数 cur --- `);
+console.log(movements);
+console.log(movements.some(deposit));
+console.log(movements.every(deposit));
+console.log(movements.filter(deposit));
+console.log(`--- 回调函数 4 --- `);
+console.log(account4.movements);
+console.log(account4.movements.some(deposit));
+console.log(account4.movements.every(deposit));
+console.log(account4.movements.filter(deposit));
+
+/*
+// 168 所搜函数findLast/findLastIndex
 console.log(movements);
 
 const movIsWithdrawal = mov => mov < 0;
@@ -255,7 +300,6 @@ console.log(
   `Your latest large movement was ${movements.length - latestLargeMovIndex} movements ago`,
 );
 
-/*
 // 164 所搜函数find
 const firstWithdrawal = movements.find(mov => mov < 0);
 console.log(firstWithdrawal);
