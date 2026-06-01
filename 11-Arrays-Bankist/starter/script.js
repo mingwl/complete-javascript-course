@@ -242,6 +242,26 @@ btnClose.addEventListener('click', function (e) {
   inputCloseUsername.value = inputClosePin.value = '';
 });
 
+// 170 搜索函数flat/flatMap (ES2019)
+const arr = [[1, 2, 3], [4, 5, 6], 7, 8];
+console.log(arr.flat());
+
+const arrDeep = [[[1, 2], 3], [4, [5, 6]], 7, 8];
+console.log(arrDeep.flat(1));
+console.log(arrDeep.flat(2));
+
+const overallBalance = accounts
+  .map(acc => acc.movements)
+  .flat()
+  .reduce((acc, mov) => acc + mov, 0);
+console.log(overallBalance);
+
+const overallBalance2 = accounts
+  .flatMap(acc => acc.movements)
+  .reduce((acc, mov) => acc + mov, 0);
+console.log(overallBalance2);
+
+/*
 // 169 搜索函数some/every
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
@@ -273,7 +293,6 @@ console.log(account4.movements.some(deposit));
 console.log(account4.movements.every(deposit));
 console.log(account4.movements.filter(deposit));
 
-/*
 // 168 所搜函数findLast/findLastIndex
 console.log(movements);
 
