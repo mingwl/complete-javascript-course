@@ -62,9 +62,14 @@ const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
 // 153 创建dom元素
-const displayMovs = function (acc) {
+const displayMovs = function (acc, sort = false) {
   containerMovements.innerHTML = '';
-  acc.movements.forEach(function (mov, i) {
+
+  const movs = sort
+    ? acc.movements.slice().sort((a, b) => a - b)
+    : acc.movements;
+
+  movs.forEach(function (mov, i) {
     const type = mov > 0 ? 'deposit' : 'withdrawal';
     const html = `
         <div class="movements__row">
@@ -242,6 +247,43 @@ btnClose.addEventListener('click', function (e) {
   inputCloseUsername.value = inputClosePin.value = '';
 });
 
+// 172 实现排序
+let sorted = false;
+btnSort.addEventListener('click', function (e) {
+  e.preventDefault();
+  displayMovs(currentAccount, (sorted = !sorted));
+});
+
+// 171 数组排序sort函数
+// 字符串
+const owners = ['Jonas', 'Zach', 'Adam', 'Martha'];
+console.log(owners.sort());
+console.log(owners);
+
+// 数字
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+console.log(movements);
+
+// sort函数转换成字符串后再排序
+// console.log(movements.sort());
+
+// return < 0: a, b
+// return > 0: b, a
+const asc = (a, b) => (a > b ? 1 : -1);
+const desc = (a, b) => (a < b ? 1 : -1);
+movements.sort(asc);
+console.log(asc, movements);
+movements.sort(desc);
+console.log(desc, movements);
+
+const asc2 = (a, b) => a - b;
+const desc2 = (a, b) => b - a;
+movements.sort(asc2);
+console.log(asc2, movements);
+movements.sort(desc2);
+console.log(desc2, movements);
+
+/*
 // 171 Coding Challenge #4
 const breeds = [
   {
@@ -341,7 +383,6 @@ const heaviestFetchBreed2 = breeds.find(
 );
 console.log(heaviestFetchWeight2, heaviestFetchBreed2);
 
-/*
 // 170 搜索函数flat/flatMap (ES2019)
 const arr = [[1, 2, 3], [4, 5, 6], 7, 8];
 console.log(arr.flat());
@@ -362,7 +403,6 @@ const overallBalance2 = accounts
 console.log(overallBalance2);
 
 // 169 搜索函数some/every
-const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 // 等于
 console.log('等于1', movements.includes(-130));
