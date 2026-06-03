@@ -10,6 +10,7 @@ const account1 = {
   movements: [200, 450, -400, 3000, -650, -130, 70, 1300],
   interestRate: 1.2, // %
   pin: 1111,
+  type: 'premium',
 };
 
 const account2 = {
@@ -17,6 +18,7 @@ const account2 = {
   movements: [5000, 3400, -150, -790, -3210, -1000, 8500, -30],
   interestRate: 1.5,
   pin: 2222,
+  type: 'standard',
 };
 
 const account3 = {
@@ -24,6 +26,7 @@ const account3 = {
   movements: [200, -200, 340, -300, -20, 50, 400, -460],
   interestRate: 0.7,
   pin: 3333,
+  type: 'premium',
 };
 
 const account4 = {
@@ -31,6 +34,7 @@ const account4 = {
   movements: [430, 1000, 700, 50, 90],
   interestRate: 1,
   pin: 4444,
+  type: 'basic',
 };
 
 const accounts = [account1, account2, account3, account4];
@@ -254,6 +258,30 @@ btnSort.addEventListener('click', function (e) {
   displayMovs(currentAccount, (sorted = !sorted));
 });
 
+// 173 数组分组 ES2024
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+console.log(movements);
+
+const groupedMovs = Object.groupBy(movements, mov =>
+  mov > 0 ? 'deposits' : 'withdrawals',
+);
+console.log(groupedMovs);
+
+const groupedByMovCnt = Object.groupBy(accounts, acc => {
+  const movCnt = acc.movements.length;
+  if (movCnt >= 8) return 'ACVR';
+  if (movCnt >= 4) return 'ACTI';
+  if (movCnt >= 1) return 'ACMO';
+  return 'INAC';
+});
+console.log(groupedByMovCnt);
+
+// 根据对象属性分组
+// const groupedAccByType = Object.groupBy(accounts, acc => acc.type);
+const groupedAccByType = Object.groupBy(accounts, ({ type }) => type);
+console.log(groupedAccByType, typeof groupedAccByType);
+
+/*
 // 171 数组排序sort函数
 // 字符串
 const owners = ['Jonas', 'Zach', 'Adam', 'Martha'];
@@ -261,7 +289,6 @@ console.log(owners.sort());
 console.log(owners);
 
 // 数字
-const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 console.log(movements);
 
 // sort函数转换成字符串后再排序
@@ -283,7 +310,6 @@ console.log(asc2, movements);
 movements.sort(desc2);
 console.log(desc2, movements);
 
-/*
 // 171 Coding Challenge #4
 const breeds = [
   {
