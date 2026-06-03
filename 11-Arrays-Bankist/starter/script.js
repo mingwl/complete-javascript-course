@@ -242,6 +242,106 @@ btnClose.addEventListener('click', function (e) {
   inputCloseUsername.value = inputClosePin.value = '';
 });
 
+// 171 Coding Challenge #4
+const breeds = [
+  {
+    breed: 'German Shepherd',
+    averageWeight: 32,
+    activities: ['fetch', 'swimming'],
+  },
+  {
+    breed: 'Dalmatian',
+    averageWeight: 24,
+    activities: ['running', 'fetch', 'agility'],
+  },
+  {
+    breed: 'Labrador',
+    averageWeight: 28,
+    activities: ['swimming', 'fetch'],
+  },
+  {
+    breed: 'Beagle',
+    averageWeight: 12,
+    activities: ['digging', 'fetch'],
+  },
+  {
+    breed: 'Husky',
+    averageWeight: 26,
+    activities: ['running', 'agility', 'swimming'],
+  },
+  {
+    breed: 'Bulldog',
+    averageWeight: 36,
+    activities: ['sleeping'],
+  },
+  {
+    breed: 'Poodle',
+    averageWeight: 18,
+    activities: ['agility', 'fetch'],
+  },
+];
+
+// 1.
+const huskyWeight = breeds.find(b => b.breed === 'Husky').averageWeight;
+console.log(huskyWeight);
+
+// 2.
+const dogBothActivities = breeds.find(
+  b => b.activities.includes('running') && b.activities.includes('fetch'),
+).breed;
+console.log(dogBothActivities);
+
+// 3.
+const allActivities = breeds.flatMap(b => b.activities);
+console.log('allActivities', allActivities);
+
+// 4.
+const uniqueActivities = [...new Set(allActivities)];
+console.log('uniquACtivities', uniqueActivities);
+
+// 5.
+const swimmingAdjacent = [
+  ...new Set(
+    breeds
+      .filter(b => b.activities.includes('swimming'))
+      .flatMap(b => b.activities)
+      .filter(a => a !== 'swimming'),
+  ),
+];
+console.log(swimmingAdjacent);
+
+// 6.
+console.log(
+  'all breads have an avg weight >= 10kg:',
+  breeds.every(b => b.averageWeight >= 10),
+);
+
+// 7.
+console.log(
+  'any breed has 3 or more activiities:',
+  breeds.some(b => b.activities.length >= 3),
+);
+
+// bonus 1
+const fetchWeights = breeds
+  .filter(b => b.activities.includes('fetch'))
+  .map(b => b.averageWeight);
+const heaviestFetchWeight = Math.max(...fetchWeights);
+console.log(heaviestFetchWeight);
+
+// bonus 2
+const heaviestFetchWeight2 = breeds
+  .filter(b => b.activities.includes('fetch'))
+  .reduce(
+    (acc, b) => (b.activities > acc ? b.averageWeight : acc),
+    breeds[0].averageWeight,
+  );
+const heaviestFetchBreed2 = breeds.find(
+  b => b.averageWeight === heaviestFetchWeight2,
+);
+console.log(heaviestFetchWeight2, heaviestFetchBreed2);
+
+/*
 // 170 搜索函数flat/flatMap (ES2019)
 const arr = [[1, 2, 3], [4, 5, 6], 7, 8];
 console.log(arr.flat());
@@ -261,7 +361,6 @@ const overallBalance2 = accounts
   .reduce((acc, mov) => acc + mov, 0);
 console.log(overallBalance2);
 
-/*
 // 169 搜索函数some/every
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
