@@ -258,6 +258,49 @@ btnSort.addEventListener('click', function (e) {
   displayMovs(currentAccount, (sorted = !sorted));
 });
 
+// 174 其他创建填充数组方法ES6
+console.log(new Array(1, 2, 3, 4, 5, 6, 7));
+
+// 空数组 + fill添加函数
+const x = new Array(7);
+console.log(x);
+
+x.fill(1, 3, 5);
+console.log(x);
+
+x.fill(2);
+console.log(x);
+
+const arr = [1, 2, 3, 4, 5, 6, 7];
+console.log(arr);
+
+arr.fill(23, 2, 6);
+console.log(arr);
+
+const y = Array.from({ length: 7 }, () => 1);
+console.log('y:', y);
+
+const z = Array.from({ length: 7 }, (_, i) => i + 1.1);
+console.log('z:', z);
+
+const rand6 = () => Math.trunc(Math.random() * 6) + 1;
+const ran = Array.from({ length: 10 }, () => Math.trunc(Math.random() * 6) + 1);
+const ran2 = Array.from({ length: 10 }, rand6);
+console.log(ran);
+console.log(ran2);
+
+labelBalance.addEventListener('click', function () {
+  const movsUI = Array.from(
+    document.querySelectorAll('.movements__value'),
+    el => Number(el.textContent.replace('€', '')),
+  );
+  console.log(movsUI);
+
+  const movsUI2 = [...document.querySelectorAll('.movements__value')];
+  console.log(movsUI2);
+});
+
+/*
 // 173 数组分组 ES2024
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 console.log(movements);
@@ -281,7 +324,6 @@ console.log(groupedByMovCnt);
 const groupedAccByType = Object.groupBy(accounts, ({ type }) => type);
 console.log(groupedAccByType, typeof groupedAccByType);
 
-/*
 // 171 数组排序sort函数
 // 字符串
 const owners = ['Jonas', 'Zach', 'Adam', 'Martha'];
