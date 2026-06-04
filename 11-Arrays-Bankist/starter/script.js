@@ -258,6 +258,22 @@ btnSort.addEventListener('click', function (e) {
   displayMovs(currentAccount, (sorted = !sorted));
 });
 
+// 175 不修改底层数组的函数
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
+// toReversed (reverse)
+const reversedMovs = movements.toReversed();
+console.log(movements);
+console.log(reversedMovs);
+
+// toSorted (sort)
+// toSpliced (splice)
+const newMovs = movements.with(1, 2000);
+// movements[1] = 2000;
+console.log(movements);
+console.log(newMovs);
+
+/*
 // 174 其他创建填充数组方法ES6
 console.log(new Array(1, 2, 3, 4, 5, 6, 7));
 
@@ -300,7 +316,6 @@ labelBalance.addEventListener('click', function () {
   console.log(movsUI2);
 });
 
-/*
 // 173 数组分组 ES2024
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 console.log(movements);
