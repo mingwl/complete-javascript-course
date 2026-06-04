@@ -258,6 +258,62 @@ btnSort.addEventListener('click', function (e) {
   displayMovs(currentAccount, (sorted = !sorted));
 });
 
+// 177 数组函数实践
+// 1.
+const bankDepositSum = accounts
+  .flatMap(acc => acc.movements)
+  .filter(mov => mov > 0)
+  .reduce((acc, deposit) => acc + deposit, 0);
+console.log(bankDepositSum);
+
+// 2.
+// const numDeposits1000 = accounts
+//   .flatMap(acc => acc.movements)
+//   .filter(mov => mov >= 1000).length;
+const numDeposits1000 = accounts
+  .flatMap(acc => acc.movements)
+  // .filter(mov => mov >= 1000)
+  .reduce((cnt, cur) => (cur >= 1000 ? ++cnt : cnt), 0);
+console.log(numDeposits1000);
+
+// prefixed ++ operator
+let a = 10;
+console.log(++a);
+console.log(a);
+
+// 3. reduce创建新对象
+const { deposits, withdrawal } = accounts
+  .flatMap(acc => acc.movements)
+  .reduce(
+    (sums, cur) => {
+      // cur > 0 ? (sums.deposits += cur) : (sums.withdrawal += cur);
+      sums[cur > 0 ? 'deposits' : 'withdrawal'] += cur;
+      return sums;
+    },
+    { deposits: 0, withdrawal: 0 },
+  );
+console.log(deposits, withdrawal);
+
+// 4.
+// this is a nice title
+// This Is a Nice Title
+const convertTitleCase = function (str) {
+  const exception = ['a', 'an', 'and', 'the', 'but', 'or', 'on', 'in', 'with'];
+
+  const capitalize = str => str[0].toUpperCase() + str.slice(1);
+
+  const titleCase = str
+    .toLowerCase()
+    .split(' ')
+    .map(word => (exception.includes(word) ? word : capitalize(word)))
+    .join(' ');
+  return capitalize(titleCase);
+};
+console.log(convertTitleCase(`this is a nice title`));
+console.log(convertTitleCase(`this is a LONG title but not too long`));
+console.log(convertTitleCase(`and here is another title and with an EXAMPLE`));
+
+/*
 // 175 不修改底层数组的函数
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
@@ -273,7 +329,6 @@ const newMovs = movements.with(1, 2000);
 console.log(movements);
 console.log(newMovs);
 
-/*
 // 174 其他创建填充数组方法ES6
 console.log(new Array(1, 2, 3, 4, 5, 6, 7));
 
