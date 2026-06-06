@@ -92,8 +92,8 @@ const displayMovements = function (movements, sort = false) {
     const html = `
       <div class="movements__row">
         <div class="movements__type movements__type--${type}">${
-      i + 1
-    } ${type}</div>
+          i + 1
+        } ${type}</div>
         <div class="movements__value">${mov}€</div>
       </div>
     `;
@@ -160,11 +160,12 @@ btnLogin.addEventListener('click', function (e) {
   e.preventDefault();
 
   currentAccount = accounts.find(
-    acc => acc.username === inputLoginUsername.value
+    acc => acc.username === inputLoginUsername.value,
   );
   console.log(currentAccount);
 
-  if (currentAccount?.pin === Number(inputLoginPin.value)) {
+  // if (currentAccount?.pin === Number(inputLoginPin.value)) {
+  if (currentAccount?.pin === +inputLoginPin.value) {
     // Display UI and message
     labelWelcome.textContent = `Welcome back, ${
       currentAccount.owner.split(' ')[0]
@@ -182,9 +183,10 @@ btnLogin.addEventListener('click', function (e) {
 
 btnTransfer.addEventListener('click', function (e) {
   e.preventDefault();
-  const amount = Number(inputTransferAmount.value);
+  // const amount = Number(inputTransferAmount.value);
+  const amount = +inputTransferAmount.value;
   const receiverAcc = accounts.find(
-    acc => acc.username === inputTransferTo.value
+    acc => acc.username === inputTransferTo.value,
   );
   inputTransferAmount.value = inputTransferTo.value = '';
 
@@ -206,7 +208,8 @@ btnTransfer.addEventListener('click', function (e) {
 btnLoan.addEventListener('click', function (e) {
   e.preventDefault();
 
-  const amount = Number(inputLoanAmount.value);
+  // const amount = Number(inputLoanAmount.value);
+  const amount = +inputLoanAmount.value;
 
   if (amount > 0 && currentAccount.movements.some(mov => mov >= amount * 0.1)) {
     // Add movement
@@ -223,10 +226,11 @@ btnClose.addEventListener('click', function (e) {
 
   if (
     inputCloseUsername.value === currentAccount.username &&
-    Number(inputClosePin.value) === currentAccount.pin
+    // Number(inputClosePin.value) === currentAccount.pin
+    +inputClosePin.value === currentAccount.pin
   ) {
     const index = accounts.findIndex(
-      acc => acc.username === currentAccount.username
+      acc => acc.username === currentAccount.username,
     );
     console.log(index);
     // .indexOf(23)
@@ -251,3 +255,47 @@ btnSort.addEventListener('click', function (e) {
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
+
+// 181 数字转换与检验
+console.log(23 === 23.0);
+console.log(0.1 + 0.2);
+console.log(1 / 10);
+console.log(3 / 10);
+
+// 字符串转换为数字 conversion
+console.log(Number('23'));
+console.log(+'23');
+
+// 字符串解析为数字 parsing
+console.log(Number.parseInt('30px'));
+console.log(Number.parseInt('30px', 10));
+console.log(Number.parseInt('e30'));
+
+console.log(Number.parseInt('2.5rem'));
+console.log(Number.parseInt(' 2.5rem '));
+console.log(Number.parseFloat('2.5rem'));
+
+// 全局函数
+console.log(parseFloat('2.5rem'));
+
+console.log('---isNaN---');
+console.log(Number.isNaN(20));
+console.log(Number.isNaN('20'));
+console.log(Number.isNaN(+'20x'));
+console.log(Number.isNaN(+'20'));
+console.log(Number.isNaN(23 / 0));
+
+console.log('---isFinite 检测是否为数字---');
+console.log(Number.isFinite(20));
+console.log(Number.isFinite('20'));
+console.log(Number.isFinite(+'20x'));
+console.log(Number.isFinite(+'20'));
+console.log(Number.isFinite(23 / 0));
+
+console.log('---isInteger 检测是否为数字---');
+console.log(Number.isInteger(20.0));
+console.log(Number.isInteger(20.1));
+console.log(Number.isInteger('20'));
+console.log(Number.isInteger(+'20x'));
+console.log(Number.isInteger(+'20'));
+console.log(Number.isInteger(23 / 0));
