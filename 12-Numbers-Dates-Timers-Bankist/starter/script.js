@@ -255,7 +255,33 @@ btnSort.addEventListener('click', function (e) {
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
+// 182 余数运算符 remainder operator
+console.log(5 % 2);
+console.log(5 / 2);
 
+console.log(8 % 3);
+console.log(8 / 3);
+
+const isEven = n => n % 2 === 0;
+let num = 5;
+console.log(`${num} is ${isEven(num) ? 'even' : 'odd'}`);
+num = 6;
+console.log(`${num} is ${isEven(num) ? 'even' : 'odd'}`);
+
+console.log(isEven(8));
+console.log(isEven(23));
+console.log(isEven(514));
+
+labelBalance.addEventListener('click', function () {
+  [...document.querySelectorAll('.movements__row')].forEach(function (row, i) {
+    // 0,2,4,6
+    if (i % 2 === 0) row.style.backgroundColor = 'yellowgreen';
+    // 0,3,6,0
+    if (i % 3 === 0) row.style.backgroundColor = 'blue';
+  });
+});
+
+/*
 // 182 数学与四舍五入函数
 console.log(Math.sqrt(25));
 console.log(25 ** (1 / 2));
@@ -308,7 +334,6 @@ console.log((2.345).toFixed(2));
 console.log(+(2.345).toFixed(2));
 console.log(Number((2.345).toFixed(2)));
 
-/*
 // 181 数字转换与检验
 console.log(23 === 23.0);
 console.log(0.1 + 0.2);
