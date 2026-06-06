@@ -256,6 +256,48 @@ btnSort.addEventListener('click', function (e) {
 /////////////////////////////////////////////////
 // LECTURES
 
+// 185 BigInt类型ES2020
+
+// Number类型最大数值
+console.log(2 ** 53 - 1);
+console.log(Number.MAX_SAFE_INTEGER);
+
+// 超出Number类型最大数值后不再精确
+console.log(2 ** 53 + 0);
+console.log(2 ** 53 + 1);
+console.log(2 ** 53 + 2);
+console.log(2 ** 53 + 3);
+
+// Number
+console.log(1231231231231231231231231231231212312);
+// BigInt
+console.log(1231231231231231231231231231231212312n);
+console.log(BigInt(1231231231231231231231231231231212312));
+
+// 运算符
+console.log(10000n + 10000n);
+console.log(1231231231231231231231231231231212312n * 10000n);
+// console.log(1231231231231231231231231231231212312n * 10000);
+console.log(1231231231231231231231231231231212312n * BigInt(10000));
+
+console.log(20n > 15);
+console.log(20n === 20);
+console.log(20n == 20);
+console.log(20n == '20');
+console.log(typeof 20n);
+
+console.log(1231231231231231231231231231231212312n + ' is big');
+
+console.log(Math.sqrt(16));
+// console.log(Math.sqrt(16n));
+
+// divisions
+console.log(12n / 3n);
+console.log(11n / 3n);
+console.log(10n / 3n);
+console.log(10 / 3);
+
+/*
 // 184 数字分割运算符ES2021
 
 // 287,460,000,000
@@ -275,7 +317,7 @@ console.log(PI);
 console.log(Number('230000'));
 console.log(Number('230_000'));
 console.log(parseInt('230_000'));
-/*
+
 // 182 余数运算符 remainder operator
 console.log(5 % 2);
 console.log(5 / 2);
