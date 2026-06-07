@@ -256,6 +256,48 @@ btnSort.addEventListener('click', function (e) {
 /////////////////////////////////////////////////
 // LECTURES
 
+// 186 日期对象
+
+// 1. create a date
+const now = new Date();
+console.log(now);
+
+// 2. create a date by parsing a string
+// 解析字符串创建日期
+console.log(new Date('Jun 06 2026 22:03:48'));
+console.log(new Date('December 24, 2015'));
+console.log(new Date('2026年6月6日'));
+console.log(new Date('June 6, 2026'));
+console.log(new Date(account1.movementsDates[0]));
+
+// 3.
+console.log(new Date(2037, 10, 19, 15, 23, 5));
+console.log(new Date(2037, 10, 33, 15, 23, 5));
+
+// 4.
+console.log(new Date(0));
+console.log(new Date(3 * 24 * 60 * 60 * 1000));
+
+// 日期对象函数
+console.log('---日期对象函数---');
+const future = new Date(2037, 10, 19, 15, 23);
+console.log(future);
+console.log(future.getFullYear());
+console.log(future.getMonth());
+console.log(future.getDate());
+console.log(future.getDay());
+console.log(future.getHours());
+console.log(future.getMinutes());
+console.log(future.getSeconds());
+console.log(future.toISOString());
+console.log(future.getTime());
+
+console.log(new Date(2142253380000));
+console.log(Date.now());
+
+future.setFullYear(2040);
+
+/*
 // 185 BigInt类型ES2020
 
 // Number类型最大数值
@@ -297,7 +339,6 @@ console.log(11n / 3n);
 console.log(10n / 3n);
 console.log(10 / 3);
 
-/*
 // 184 数字分割运算符ES2021
 
 // 287,460,000,000
