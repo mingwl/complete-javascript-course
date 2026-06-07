@@ -221,9 +221,40 @@ const updateUI = function (acc) {
   calcDisplaySummary(acc);
 };
 
+// 193 Banquist实习倒计时
+const startLogoutTimer = function () {
+  const tick = function () {
+    const min = Math.trunc(time / 60)
+      .toString()
+      .padStart(2, '0');
+    const sec = (time % 60).toString().padStart(2, '0');
+
+    // in each call, print the remaining time to UI
+    labelTimer.textContent = `${min}:${sec}`;
+
+    // when 0 second reached, stop timer and logout
+    if (time === 0) {
+      clearInterval(timer);
+      labelWelcome.textContent = `Login to get STARTED`;
+      containerApp.style.opacity = 0;
+    }
+
+    // decrease it
+    time--;
+  };
+
+  // set time to 5 min
+  let time = 120;
+
+  // call timer every sec
+  tick();
+  const timer = setInterval(tick, 1000);
+  return timer;
+};
+
 ///////////////////////////////////////
 // Event handlers
-let currentAccount;
+let currentAccount, timer;
 
 // 假装已登录
 // currentAccount = account1;
@@ -281,6 +312,9 @@ btnLogin.addEventListener('click', function (e) {
     inputLoginUsername.value = inputLoginPin.value = '';
     inputLoginPin.blur();
 
+    if (timer) clearInterval(timer);
+    timer = startLogoutTimer();
+
     // Update UI
     updateUI(currentAccount);
   }
@@ -310,6 +344,10 @@ btnTransfer.addEventListener('click', function (e) {
 
     // Update UI
     updateUI(currentAccount);
+
+    // Reset timer
+    clearInterval(timer);
+    timer = startLogoutTimer();
   }
 });
 
@@ -328,6 +366,10 @@ btnLoan.addEventListener('click', function (e) {
 
       // Update UI
       updateUI(currentAccount);
+
+      // Reset timer
+      clearInterval(timer);
+      timer = startLogoutTimer();
     }, 5000);
   }
   inputLoanAmount.value = '';
@@ -368,6 +410,7 @@ btnSort.addEventListener('click', function (e) {
 /////////////////////////////////////////////////
 // LECTURES
 
+/*
 // 192 闹钟setTimeout与setInterval
 const ingredients = ['olives', 'spinach'];
 const pizzaTimer = setTimeout(
@@ -390,7 +433,6 @@ setInterval(function () {
   );
 }, 1000);
 
-/*
 // 191 国际化数字
 const num = 1234567.89;
 console.log(num);
