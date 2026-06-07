@@ -320,12 +320,15 @@ btnLoan.addEventListener('click', function (e) {
   const amount = Math.floor(inputLoanAmount.value);
 
   if (amount > 0 && currentAccount.movements.some(mov => mov >= amount * 0.1)) {
-    // Add movement
-    currentAccount.movements.push(amount);
-    currentAccount.movementsDates.push(new Date().toISOString());
+    // 192 闹钟setTimeout与setInterval
+    setTimeout(function () {
+      // Add movement
+      currentAccount.movements.push(amount);
+      currentAccount.movementsDates.push(new Date().toISOString());
 
-    // Update UI
-    updateUI(currentAccount);
+      // Update UI
+      updateUI(currentAccount);
+    }, 5000);
   }
   inputLoanAmount.value = '';
 });
@@ -365,6 +368,29 @@ btnSort.addEventListener('click', function (e) {
 /////////////////////////////////////////////////
 // LECTURES
 
+// 192 闹钟setTimeout与setInterval
+const ingredients = ['olives', 'spinach'];
+const pizzaTimer = setTimeout(
+  (ing1, ing2) => console.log(`Here is your 🍕 with ${ing1} and ${ing2}`),
+  3000,
+  ...ingredients,
+);
+console.log('waiting...');
+if (ingredients.includes('spinach')) clearTimeout(pizzaTimer);
+
+// 时钟
+setInterval(function () {
+  const now = new Date();
+  console.log(
+    new Intl.DateTimeFormat(navigator.language, {
+      hour: 'numeric',
+      minute: 'numeric',
+      second: 'numeric',
+    }).format(now),
+  );
+}, 1000);
+
+/*
 // 191 国际化数字
 const num = 1234567.89;
 console.log(num);
@@ -399,7 +425,6 @@ console.log(
   new Intl.NumberFormat(navigator.language, options).format(num),
 );
 
-/*
 // 189 日期运算
 const future = new Date(2037, 10, 19, 15, 23);
 console.log(Number(future));
