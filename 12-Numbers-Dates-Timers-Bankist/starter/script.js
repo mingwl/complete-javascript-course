@@ -92,19 +92,22 @@ const inputClosePin = document.querySelector('.form__input--pin');
 const calcDaysPassed = (d1, d2) =>
   Math.round(Math.abs(d2 - d1) / (1000 * 60 * 60 * 24));
 
-const formatMovementDate = function (date) {
+const formatMovementDate = function (date, locale) {
   const today = new Date();
   const daysPassed = calcDaysPassed(today, date);
-  console.log(daysPassed);
+  // console.log(daysPassed);
 
   if (daysPassed === 0) return 'Today';
   if (daysPassed === 1) return 'Yesterday';
   if (daysPassed <= 7) return `${daysPassed} days ago`;
 
-  const year = date.getFullYear();
-  const month = (date.getMonth() + 1).toString().padStart(2, '0');
-  const day = date.getDate().toString().padStart(2, '0');
-  return `${day}/${month}/${year}`;
+  // const year = date.getFullYear();
+  // const month = (date.getMonth() + 1).toString().padStart(2, '0');
+  // const day = date.getDate().toString().padStart(2, '0');
+  // return `${day}/${month}/${year}`;
+
+  // 190 国际化日期
+  return new Intl.DateTimeFormat(locale).format(date);
 };
 
 const displayMovements = function (acc, sort = false) {
@@ -115,7 +118,7 @@ const displayMovements = function (acc, sort = false) {
     date: acc.movementsDates.at(i),
     i,
   }));
-  console.log(combinedMovsDates);
+  // console.log(combinedMovsDates);
 
   // const movs = sort
   //   ? acc.movements.slice().sort((a, b) => a - b)
@@ -129,7 +132,7 @@ const displayMovements = function (acc, sort = false) {
 
     // 187 Banquist应用添加日期
     const movDate = new Date(date);
-    const displayDate = formatMovementDate(movDate);
+    const displayDate = formatMovementDate(movDate, acc.locale);
 
     const html = `
       <div class="movements__row">
@@ -210,7 +213,7 @@ btnLogin.addEventListener('click', function (e) {
   currentAccount = accounts.find(
     acc => acc.username === inputLoginUsername.value,
   );
-  console.log(currentAccount);
+  // console.log(currentAccount);
 
   // if (currentAccount?.pin === Number(inputLoginPin.value)) {
   if (currentAccount?.pin === +inputLoginPin.value) {
@@ -223,12 +226,32 @@ btnLogin.addEventListener('click', function (e) {
     // create current date and time
     const now = new Date();
     // now.setDate(12);
-    const day = `${now.getDate()}`.padStart(2, '0');
-    const month = (now.getMonth() + 1).toString().padStart(2, '0');
-    const year = now.getFullYear();
-    const hour = now.getHours();
-    const min = now.getMinutes().toString().padStart(2, '0');
-    labelDate.textContent = `${day}/${month}/${year}, ${hour}:${min}`;
+    // const day = `${now.getDate()}`.padStart(2, '0');
+    // const month = (now.getMonth() + 1).toString().padStart(2, '0');
+    // const year = now.getFullYear();
+    // const hour = now.getHours();
+    // const min = now.getMinutes().toString().padStart(2, '0');
+    // labelDate.textContent = `${day}/${month}/${year}, ${hour}:${min}`;
+    // labelDate.textContent = new Intl.DateTimeFormat('zh-CN').format(now);
+
+    // 190 国际化日期
+    const options = {
+      year: 'numeric', // '2-digit',
+      month: 'numeric', // 'long',
+      day: 'numeric', // 'numeric',
+      // weekday: 'long',
+      hour: 'numeric',
+      minute: 'numeric',
+    };
+    const locale = navigator.language;
+    // console.log(locale);
+    labelDate.textContent = new Intl.DateTimeFormat(
+      currentAccount.locale,
+      // locale,
+      // 'zh-CN',
+      // 'fr-CH',
+      options,
+    ).format(now);
 
     // Clear input fields
     inputLoginUsername.value = inputLoginPin.value = '';
@@ -318,6 +341,7 @@ btnSort.addEventListener('click', function (e) {
 /////////////////////////////////////////////////
 // LECTURES
 
+/*
 // 189 日期运算
 const future = new Date(2037, 10, 19, 15, 23);
 console.log(Number(future));
@@ -331,7 +355,6 @@ const days1 = calcDaysPassed(
 );
 console.log(days1);
 
-/*
 // 186 日期对象
 
 // 1. create a date
