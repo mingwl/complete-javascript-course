@@ -84,15 +84,25 @@ const inputClosePin = document.querySelector('.form__input--pin');
 const displayMovements = function (acc, sort = false) {
   containerMovements.innerHTML = '';
 
-  const movs = sort
-    ? acc.movements.slice().sort((a, b) => a - b)
-    : acc.movements;
+  const combinedMovsDates = acc.movements.map((mov, i) => ({
+    mov,
+    date: acc.movementsDates.at(i),
+    i,
+  }));
+  console.log(combinedMovsDates);
 
-  movs.forEach(function (mov, i) {
+  // const movs = sort
+  //   ? acc.movements.slice().sort((a, b) => a - b)
+  //   : acc.movements;
+  if (sort) combinedMovsDates.sort((a, b) => a.mov - b.mov);
+
+  // 188 Banquist应用纠正排序错误
+  combinedMovsDates.forEach(function (obj) {
+    const { mov, date, i } = obj;
     const type = mov > 0 ? 'deposit' : 'withdrawal';
 
     // 187 Banquist应用添加日期
-    const movDate = new Date(acc.movementsDates[i]);
+    const movDate = new Date(date);
     const movDateYear = movDate.getFullYear();
     const movDateMonth = (movDate.getMonth() + 1).toString().padStart(2, '0');
     const movDateDay = movDate.getDate().toString().padStart(2, '0');
