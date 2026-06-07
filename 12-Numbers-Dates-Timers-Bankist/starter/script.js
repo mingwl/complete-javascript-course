@@ -11,7 +11,10 @@
 
 const account1 = {
   owner: 'Jonas Schmedtmann',
-  movements: [200, 455.23, -306.5, 25000, -642.21, -133.9, 79.97, 1300],
+  movements: [
+    200, 455.23, -306.5, 25000, -642.21, -133.9, 79.97, 1300, 100, 200, 300,
+    400, 500,
+  ],
   interestRate: 1.2, // %
   pin: 1111,
 
@@ -24,6 +27,11 @@ const account1 = {
     '2020-05-27T17:01:17.194Z',
     '2020-07-11T23:36:17.929Z',
     '2020-07-12T10:51:36.790Z',
+    '2026-06-03T10:51:36.790Z',
+    '2026-06-04T10:51:36.790Z',
+    '2026-06-05T10:51:36.790Z',
+    '2026-06-06T10:51:36.790Z',
+    '2026-06-07T10:51:36.790Z',
   ],
   currency: 'EUR',
   locale: 'pt-PT', // de-DE
@@ -81,6 +89,24 @@ const inputClosePin = document.querySelector('.form__input--pin');
 /////////////////////////////////////////////////
 // Functions
 
+const calcDaysPassed = (d1, d2) =>
+  Math.round(Math.abs(d2 - d1) / (1000 * 60 * 60 * 24));
+
+const formatMovementDate = function (date) {
+  const today = new Date();
+  const daysPassed = calcDaysPassed(today, date);
+  console.log(daysPassed);
+
+  if (daysPassed === 0) return 'Today';
+  if (daysPassed === 1) return 'Yesterday';
+  if (daysPassed <= 7) return `${daysPassed} days ago`;
+
+  const year = date.getFullYear();
+  const month = (date.getMonth() + 1).toString().padStart(2, '0');
+  const day = date.getDate().toString().padStart(2, '0');
+  return `${day}/${month}/${year}`;
+};
+
 const displayMovements = function (acc, sort = false) {
   containerMovements.innerHTML = '';
 
@@ -103,10 +129,7 @@ const displayMovements = function (acc, sort = false) {
 
     // 187 Banquist应用添加日期
     const movDate = new Date(date);
-    const movDateYear = movDate.getFullYear();
-    const movDateMonth = (movDate.getMonth() + 1).toString().padStart(2, '0');
-    const movDateDay = movDate.getDate().toString().padStart(2, '0');
-    const displayDate = `${movDateDay}/${movDateMonth}/${movDateYear}`;
+    const displayDate = formatMovementDate(movDate);
 
     const html = `
       <div class="movements__row">
@@ -294,6 +317,19 @@ btnSort.addEventListener('click', function (e) {
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
+
+// 189 日期运算
+const future = new Date(2037, 10, 19, 15, 23);
+console.log(Number(future));
+console.log(+future);
+
+// const calcDaysPassed = (d1, d2) =>
+// Math.round(Math.abs(d2 - d1) / (1000 * 60 * 60 * 24));
+const days1 = calcDaysPassed(
+  new Date(2037, 3, 14),
+  new Date(2037, 3, 24, 10, 8),
+);
+console.log(days1);
 
 /*
 // 186 日期对象
